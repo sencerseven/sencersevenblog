@@ -13,6 +13,12 @@
   
   <dependencies>
   
+  	<dependency>
+  		<groupId>com.sencerseven</groupId>
+  		<artifactId>blogbackend</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  
   <!-- SPRING FRAMEWORK DEPENDENCY -->
   	<dependency>
 	    <groupId>org.springframework</groupId>
