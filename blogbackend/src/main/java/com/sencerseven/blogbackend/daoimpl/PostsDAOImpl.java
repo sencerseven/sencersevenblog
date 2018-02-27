@@ -12,7 +12,6 @@ import com.sencerseven.blogbackend.dao.PostsDAO;
 import com.sencerseven.blogbackend.dto.Posts;
 
 @Repository("postsDAO")
-@Transactional
 public class PostsDAOImpl implements PostsDAO {
 
 	@Autowired

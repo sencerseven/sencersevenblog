@@ -12,6 +12,7 @@ import com.sencerseven.blogbackend.dao.CategoryDAO;
 import com.sencerseven.blogbackend.dao.PostsDAO;
 import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.dto.Posts;
+import com.sencerseven.blogbackend.service.PostsService;
 
 public class PostsTestCase {
 
@@ -21,6 +22,9 @@ public class PostsTestCase {
 	
 	
 	static CategoryDAO categoryDAO;
+	
+	
+	static PostsService postsService;
 	
 	
 	@BeforeClass
@@ -33,7 +37,7 @@ public class PostsTestCase {
 		
 		categoryDAO = context.getBean("categoryDAO",CategoryDAO.class);
 		
-		postsDAO = context.getBean("postsDAO",PostsDAO.class);
+		postsService = context.getBean("postsService",PostsService.class);
 		
 	}
 //	@Test
@@ -57,20 +61,24 @@ public class PostsTestCase {
 //		
 //		
 //	}
+
+//	@Test
+//	public void newPostAdd() {
+//		Category category = categoryDAO.getCategory(1);
+//		Posts post = new Posts();
+//		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı");
+//		post.setTitle("Iphone X");
+//		post.setCategory(category);
+//		
+//		List<Posts> postList = new ArrayList<>();
+//		postList.add(post);
+//		category.setPosts(postList);
+//		categoryDAO.addCategory(category);
+//	}
 	
 	@Test
-	public void newPostAdd() {
-		Category category = categoryDAO.getCategory(1);
-		Posts post = new Posts();
-		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı");
-		post.setTitle("Iphone X");
-		post.setCategory(category);
-		
-		List<Posts> postList = new ArrayList<>();
-		postList.add(post);
-		category.setPosts(postList);
-		categoryDAO.addCategory(category);
+	public void uniqueResult() {
+		System.out.println(postsService.getLastPosts().getTitle());
 	}
-	
 	
 }
