@@ -43,7 +43,7 @@ public class HibernateConfig {
 	public SessionFactory sessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionFactoryBuilder.addProperties(properties());
-		sessionFactoryBuilder.scanPackages("com.sencerseven.blogbackend.dto");
+		sessionFactoryBuilder.scanPackages("com.sencerseven.blogbackend");
 		return sessionFactoryBuilder.buildSessionFactory();
 	}
 	

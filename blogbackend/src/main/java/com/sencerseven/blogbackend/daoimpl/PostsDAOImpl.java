@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,14 +30,13 @@ public class PostsDAOImpl implements PostsDAO {
 	}
 
 	@Override
-	public boolean addPosts(Posts posts) {
+	public void addPosts(Posts posts) {
+		Session session = sessionFactory.getCurrentSession();
 		try {
-			sessionFactory.getCurrentSession().persist(posts);
-			return true;
+			session.persist(posts);
 		}catch (Exception e) {
-			// TODO: handle exception
+			session.merge(posts)	;
 		}
-		return false;
 	}
 
 	@Override
@@ -55,6 +55,17 @@ public class PostsDAOImpl implements PostsDAO {
 	public List<Posts> allPosts() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean saveOrUpdate(Posts posts) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(posts);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 }

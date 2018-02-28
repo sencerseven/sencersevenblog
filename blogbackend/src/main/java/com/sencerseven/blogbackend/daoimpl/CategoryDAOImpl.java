@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import com.sencerseven.blogbackend.dao.CategoryDAO;
 import com.sencerseven.blogbackend.dto.Category;
 
 @Repository("categoryDAO")
-@Transactional
+@Transactional(rollbackOn = Exception.class)
 public class CategoryDAOImpl implements CategoryDAO{
 
 	@Autowired
@@ -31,14 +32,13 @@ public class CategoryDAOImpl implements CategoryDAO{
 
 	@Override
 	public boolean addCategory(Category category) {
+		Session session = sessionFactory.getCurrentSession();
 		try {
-			sessionFactory.getCurrentSession().persist(category);
-			return true;
+			session.persist(category);
 		}catch (Exception e) {
-			// TODO: handle exception
+			session.merge(category);
 		}
-		
-		return false;
+		return true;
 	}
 
 	@Override
@@ -76,6 +76,17 @@ public class CategoryDAOImpl implements CategoryDAO{
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public boolean saveOrUpdate(Category category) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(category);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 }

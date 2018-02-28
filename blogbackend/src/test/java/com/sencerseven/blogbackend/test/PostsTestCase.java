@@ -62,23 +62,21 @@ public class PostsTestCase {
 //		
 //	}
 
-//	@Test
-//	public void newPostAdd() {
-//		Category category = categoryDAO.getCategory(1);
-//		Posts post = new Posts();
-//		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı");
-//		post.setTitle("Iphone X");
-//		post.setCategory(category);
-//		
-//		List<Posts> postList = new ArrayList<>();
-//		postList.add(post);
-//		category.setPosts(postList);
-//		categoryDAO.addCategory(category);
-//	}
-	
 	@Test
-	public void uniqueResult() {
-		System.out.println(postsService.getLastPosts().getTitle());
+	public void newPostAdd() {
+		Posts post = new Posts();
+		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı 3");
+		post.setTitle("Iphone X");
+		post.setCategory(categoryDAO.getCategory(2));
+		postsService.addPosts(post);
+		
+		
+		
 	}
+	
+//	@Test
+//	public void uniqueResult() {
+//		System.out.println(postsService.getLastPosts().getTitle());
+//	}
 	
 }

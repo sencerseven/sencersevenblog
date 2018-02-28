@@ -10,6 +10,8 @@ public interface CategoryDAO {
 	public boolean addCategory(Category category);
 	public boolean updateCategory(Category category);
 	public boolean deleteCategory(Category category);
+	
+	public boolean saveOrUpdate(Category category);
 	public List<Category> allCategory();
 	
 	

@@ -40,10 +40,10 @@ public class PostsServiceImpl implements PostsService{
 	}
 
 	@Override
-	@Transactional
-	public boolean addPosts(Posts posts) {
+	@Transactional(rollbackOn = Exception.class)
+	public void addPosts(Posts posts) {
 		// TODO Auto-generated method stub
-		return postsDAO.addPosts(posts);
+		postsDAO.addPosts(posts);
 	}
 
 	@Override
@@ -66,5 +66,14 @@ public class PostsServiceImpl implements PostsService{
 		// TODO Auto-generated method stub
 		return postsDAO.allPosts();
 	}
+
+	@Override
+	@Transactional
+	public boolean saveOrUpdate(Posts posts) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
 
 }

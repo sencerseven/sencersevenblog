@@ -8,10 +8,11 @@ public interface PostsService {
 
 	
 	public Posts getPosts(int id);
-	public boolean addPosts(Posts posts);
+	public void addPosts(Posts posts);
 	public boolean updatePosts(Posts posts);
 	public boolean deletePosts(Posts posts);
 	public List<Posts> allPosts();
+	public boolean saveOrUpdate(Posts posts);
 
 	//Business
 	

@@ -24,7 +24,7 @@ public class Posts {
 	@Column
 	private String content;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToOne
 	@JoinColumn(name="category_id",nullable=false)
 	private Category category;
 	

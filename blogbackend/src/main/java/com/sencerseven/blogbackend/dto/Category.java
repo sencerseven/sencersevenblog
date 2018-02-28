@@ -38,7 +38,7 @@ public class Category implements Serializable{
 	@Column(name = "is_active")
 	private boolean active;
 
-	@OneToMany(mappedBy="category",cascade =  {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(mappedBy="category",cascade =  {CascadeType.ALL})
 	private List<Posts> posts;
 	
 	
