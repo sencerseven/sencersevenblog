@@ -1,5 +1,7 @@
 package com.sencerseven.blogbackend.dto;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Posts")
@@ -27,6 +31,9 @@ public class Posts {
 	@ManyToOne
 	@JoinColumn(name="category_id",nullable=false)
 	private Category category;
+	
+	@Temporal(TemporalType.DATE)
+	private Date created_date;
 	
 	
 	public Posts() {
@@ -69,6 +76,16 @@ public class Posts {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	
+	
+	public Date getCreated_date() {
+		return created_date;
+	}
+
+	public void setCreated_date(Date created_date) {
+		this.created_date = created_date;
 	}
 
 	@Override

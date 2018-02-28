@@ -1,6 +1,7 @@
 package com.sencerseven.blogbackend.test;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -67,7 +68,8 @@ public class PostsTestCase {
 		Posts post = new Posts();
 		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı 3");
 		post.setTitle("Iphone X");
-		post.setCategory(categoryDAO.getCategory(2));
+		post.setCategory(categoryDAO.getCategory(1));
+		post.setCreated_date(new Date());
 		postsService.addPosts(post);
 		
 		
