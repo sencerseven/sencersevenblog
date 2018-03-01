@@ -1,22 +1,31 @@
 package com.sencerseven.blogbackend.dto;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Posts")
-public class Posts {
+public class Posts implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +40,9 @@ public class Posts {
 	@ManyToOne
 	@JoinColumn(name="category_id",nullable=false)
 	private Category category;
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="posts",cascade= {CascadeType.ALL})
+	private List<Comment> comment;
 	
 	@Temporal(TemporalType.DATE)
 	private Date created_date;
@@ -80,6 +92,14 @@ public class Posts {
 
 	
 	
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
 	public Date getCreated_date() {
 		return created_date;
 	}

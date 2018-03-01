@@ -17,7 +17,7 @@ public interface PostsService {
 	//Business
 	
 	public Posts getLastPosts();
-	
+	public List<Posts> getLimitLastPosts(int limit,int startAt);
 	
 	
 }

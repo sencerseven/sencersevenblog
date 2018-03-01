@@ -21,16 +21,6 @@ public class PostsServiceImpl implements PostsService{
 	
 	@Autowired
 	SessionFactory sessionFactory;
-	
-	@Override
-	@Transactional
-	public Posts getLastPosts() {
-		String queryString = "FROM Posts p ORDER BY p.id DESC";
-		Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
-		query.setMaxResults(1);
-	
-		return query.getSingleResult();
-	}
 
 	@Override
 	@Transactional
@@ -74,6 +64,26 @@ public class PostsServiceImpl implements PostsService{
 		return false;
 	}
 	
+	@Override
+	@Transactional
+	public Posts getLastPosts() {
+		String queryString = "FROM Posts p ORDER BY p.id DESC";
+		Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
+		query.setMaxResults(1);
+	
+		return query.getSingleResult();
+	}
+
+	@Override
+	@Transactional
+	public List<Posts> getLimitLastPosts(int limit, int startAt) {
+		String queryString = "FROM Posts p ORDER BY p.id DESC";
+		Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
+		query.setMaxResults(limit);
+		query.setFirstResult(startAt);
+	
+		return query.getResultList();
+	}
 	
 
 }

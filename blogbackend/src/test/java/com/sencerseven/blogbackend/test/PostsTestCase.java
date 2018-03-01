@@ -63,17 +63,22 @@ public class PostsTestCase {
 //		
 //	}
 
+//	@Test
+//	public void newPostAdd() {
+//		Posts post = new Posts();
+//		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı 3");
+//		post.setTitle("Iphone X");
+//		post.setCategory(categoryDAO.getCategory(1));
+//		post.setCreated_date(new Date());
+//		postsService.addPosts(post);
+//		
+//		
+//		
+//	}
+	
 	@Test
-	public void newPostAdd() {
-		Posts post = new Posts();
-		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı 3");
-		post.setTitle("Iphone X");
-		post.setCategory(categoryDAO.getCategory(1));
-		post.setCreated_date(new Date());
-		postsService.addPosts(post);
-		
-		
-		
+	public void getLimitForPost() {
+		postsService.getLimitLastPosts(3, 0);
 	}
 	
 //	@Test

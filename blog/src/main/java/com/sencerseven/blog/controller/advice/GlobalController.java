@@ -26,8 +26,8 @@ public class GlobalController {
 		return categoryDAO.allCategory();
 	}
 	
-	@ModelAttribute(name="getLastPosts")
-	public Posts getAllPosts(){
-		return postsService.getLastPosts();
+	@ModelAttribute(name="getSidebarPosts")
+	public List<Posts> getSidebarPosts() {
+		return postsService.getLimitLastPosts(3, 0);
 	}
 }
