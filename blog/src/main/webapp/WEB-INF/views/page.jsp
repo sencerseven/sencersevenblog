@@ -1,7 +1,8 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <spring:url var="css" value="/resources/css"></spring:url>
 <spring:url var="js" value="/resources/js"></spring:url>
@@ -32,8 +33,8 @@
 				<div class="container">
 					<div id="logo">
 						<a href="index.html" class="logo"
-							data-dark-logo="images/logo-dark.png"> <img
-							src="images/logo.png" alt="Polo Logo">
+							data-dark-logo="${contextRoot}/resources/images/logo-dark.png"> <img
+							src="${contextRoot}/resources/images/logo.png" alt="Polo Logo">
 						</a>
 					</div>
 
@@ -51,11 +52,7 @@
 							<li><a id="top-search-trigger" href="#" class="toggle-item">
 									<i class="fa fa-search"></i> <i class="fa fa-close"></i>
 							</a></li>
-							<li class="hidden-xs">
-
-								
-
-							</li>
+							<li class="hidden-xs"></li>
 						</ul>
 					</div>
 
@@ -70,7 +67,7 @@
 					<div id="mainMenu">
 						<div class="container">
 							<!-- NAVBAR -->
-							<%@include file="./shared/navbar.jsp" %>
+							<%@include file="./shared/navbar.jsp"%>
 						</div>
 					</div>
 
@@ -84,12 +81,12 @@
 				<div class="row">
 
 					<c:if test="${userClickHomePage == true}">
-						<%@include file="home.jsp" %>
+						<%@include file="home.jsp"%>
 					</c:if>
 
 
 					<div class="sidebar col-md-3">
-						<%@include file="./shared/sidebar.jsp" %>
+						<%@include file="./shared/sidebar.jsp"%>
 					</div>
 
 				</div>
@@ -98,7 +95,7 @@
 
 
 		<footer id="footer" class="footer-light">
-			<%@include file="./shared/footer.jsp" %>
+			<%@include file="./shared/footer.jsp"%>
 		</footer>
 
 	</div>

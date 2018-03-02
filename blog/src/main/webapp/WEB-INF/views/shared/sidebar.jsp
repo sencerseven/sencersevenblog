@@ -34,9 +34,9 @@
 											
 												<c:forEach items="${getSidebarPosts}" var="sidebarPost">
 													<div class="post-thumbnail-entry">
-														<img alt="" src="images/blog/thumbnail/5.jpg">
+														<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/5.jpg">
 														<div class="post-thumbnail-content">
-															${fn:substring(sidebarPost.title,0,40)}.<a href="#">Devamı için..</a> <span
+															${fn:substring(sidebarPost.title,0,40)}.<a href="${contextRoot}/category/${sidebarPost.category.categoryUrl}/post/${sidebarPost.postUrl}">Devamı için..</a> <span
 																class="post-date"><i class="fa fa-clock-o"></i> 6m
 																ago</span> <span class="post-category"><i
 																class="fa fa-tag"></i> ${sidebarPost.category.categoryName}</span>
@@ -49,7 +49,7 @@
 										<div class="tab-pane" id="tab2">
 											<div class="post-thumbnail-list">
 												<div class="post-thumbnail-entry">
-													<img alt="" src="images/blog/thumbnail/6.jpg">
+													<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/6.jpg">
 													<div class="post-thumbnail-content">
 														<a href="#">Consectetur adipiscing elit</a> <span
 															class="post-date"><i class="fa fa-clock-o"></i>
@@ -58,7 +58,7 @@
 													</div>
 												</div>
 												<div class="post-thumbnail-entry">
-													<img alt="" src="images/blog/thumbnail/7.jpg">
+													<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/7.jpg">
 													<div class="post-thumbnail-content">
 														<a href="#">Lorem ipsum dolor sit amet, consectetur
 															adipiscing elit</a> <span class="post-date"><i
@@ -68,7 +68,7 @@
 													</div>
 												</div>
 												<div class="post-thumbnail-entry">
-													<img alt="" src="images/blog/thumbnail/8.jpg">
+													<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/8.jpg">
 													<div class="post-thumbnail-content">
 														<a href="#">Fringilla luctus Lorem ipsum dolor sit
 															amet</a> <span class="post-date"><i
@@ -82,7 +82,7 @@
 										<div class="tab-pane" id="tab3">
 											<div class="post-thumbnail-list">
 												<div class="post-thumbnail-entry">
-													<img alt="" src="images/blog/thumbnail/7.jpg">
+													<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/7.jpg">
 													<div class="post-thumbnail-content">
 														<a href="#">Lorem ipsum dolor sit amet, consectetur
 															adipiscing elit</a> <span class="post-date"><i
@@ -92,7 +92,7 @@
 													</div>
 												</div>
 												<div class="post-thumbnail-entry">
-													<img alt="" src="images/blog/thumbnail/8.jpg">
+													<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/8.jpg">
 													<div class="post-thumbnail-content">
 														<a href="#">Fringilla luctus Lorem ipsum dolor sit
 															amet</a> <span class="post-date"><i
@@ -102,7 +102,7 @@
 													</div>
 												</div>
 												<div class="post-thumbnail-entry">
-													<img alt="" src="images/blog/thumbnail/6.jpg">
+													<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/6.jpg">
 													<div class="post-thumbnail-content">
 														<a href="#">Consectetur adipiscing elit</a> <span
 															class="post-date"><i class="fa fa-clock-o"></i>

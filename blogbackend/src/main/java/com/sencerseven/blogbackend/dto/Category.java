@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,6 +38,9 @@ public class Category implements Serializable{
 	
 	@Column(name = "is_active")
 	private boolean active;
+	
+	@Column(name="category_url")
+	private String categoryUrl;
 
 	@OneToMany(mappedBy="category",cascade =  {CascadeType.ALL})
 	private List<Posts> posts;
@@ -46,12 +50,18 @@ public class Category implements Serializable{
 	
 	}
 	
-	public Category(String categoryName, String categoryDescription, boolean active, List<Posts> posts) {
+
+
+	public Category(String categoryName, String categoryDescription, boolean active, String categoryUrl,
+			List<Posts> posts) {
 		this.categoryName = categoryName;
 		this.categoryDescription = categoryDescription;
 		this.active = active;
+		this.categoryUrl = categoryUrl;
 		this.posts = posts;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -93,6 +103,15 @@ public class Category implements Serializable{
 
 	public void setPosts(List<Posts> posts) {
 		this.posts = posts;
+	}
+	
+
+	public String getCategoryUrl() {
+		return categoryUrl;
+	}
+
+	public void setCategoryUrl(String categoryUrl) {
+		this.categoryUrl = categoryUrl;
 	}
 
 	@Override

@@ -8,10 +8,10 @@
 								<div class="post-item-wrap">
 									<div class="carousel dots-inside arrows-visible" data-items="1"
 										data-lightbox="gallery">
-										<a href="images/blog/16.jpg" data-lightbox="gallery-item">
-											<img alt="image" src="images/blog/16.jpg">
-										</a> <a href="images/blog/11.jpg" data-lightbox="gallery-item">
-											<img alt="image" src="images/blog/11.jpg">
+										<a href="${contextRoot}/resources/images/blog/16.jpg" data-lightbox="gallery-item">
+											<img alt="image" src="${contextRoot}/resources/images/blog/16.jpg">
+										</a> <a href="${contextRoot}/resources/images/blog/11.jpg" data-lightbox="gallery-item">
+											<img alt="image" src="${contextRoot}/resources/images/blog/11.jpg">
 										</a>
 									</div>
 									<div class="post-item-description">
@@ -20,9 +20,9 @@
 											<span class="post-meta-date"><i
 												class="fa fa-calendar-o"></i>${getLastPosts.created_date}</span> <span
 												class="post-meta-comments"><a href=""><i
-													class="fa fa-comments-o"></i>33 Comments</a></span> <span
+													class="fa fa-comments-o"></i>${fn:length(getLastPostsComment)} Comments</a></span> <span
 												class="post-meta-category"><a href=""><i
-													class="fa fa-tag"></i>Lifestyle, Magazine</a></span>
+													class="fa fa-tag"></i>${getLastPosts.category.categoryName}</a></span>
 											<div class="post-meta-share">
 												<a class="btn btn-xs btn-slide btn-facebook" href="#"> <i
 													class="fa fa-facebook"></i> <span>Facebook</span>
@@ -65,7 +65,7 @@
 											<c:forEach items="${getLastPostsComment}" var="lastPostComment">
 												<div class="comment" id="comment-1">
 													<div class="image">
-														<img alt="" src="images/blog/author.jpg" class="avatar">
+														<img alt="" src="${contextRoot}/resources/images/blog/author.jpg" class="avatar">
 													</div>
 													<div class="text">
 														<h5 class="name">John Doe</h5>

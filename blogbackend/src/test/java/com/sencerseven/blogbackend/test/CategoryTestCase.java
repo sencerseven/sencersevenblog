@@ -10,11 +10,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.sencerseven.blogbackend.dao.CategoryDAO;
 import com.sencerseven.blogbackend.dto.Category;
+import com.sencerseven.blogbackend.service.CategoryService;
 
 public class CategoryTestCase {
 
 	
 	private static CategoryDAO  categoryDAO;
+	
+	private static CategoryService  categoryService;
+	
 	
 	private Category category;
 	
@@ -26,20 +30,20 @@ public class CategoryTestCase {
 		
 		context.refresh();
 		
-		categoryDAO = context.getBean("categoryDAO",CategoryDAO.class);
+		categoryService = context.getBean("categoryService",CategoryService.class);
 	}
 	
-//	@Test
-//	public void addCategory() {
-//		category  = new Category();
-//		
-//		category.setCategoryName("Teknoloji");
-//		category.setCategoryDescription("Teknoloji konularını bu sayfada bulabilirsiniz");
-//		category.setActive(true);
-//		
-//		assertEquals("Böyle bir kategori malesef eklenemedi",true, categoryDAO.addCategory(category));
-//		
-//	}
+	@Test
+	public void addCategory() {
+		category  = new Category();
+		
+		category.setCategoryName("Teknoloji");
+		category.setCategoryDescription("Teknoloji konularını bu sayfada bulabilirsiniz");
+		category.setActive(true);
+		
+		assertEquals("Böyle bir kategori malesef eklenemedi",true, categoryService.addCategory(category));
+		
+	}
 	
 //	@Test
 //	public void updateCategort() {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.sencerseven.blogbackend.dao.PostsDAO;
 import com.sencerseven.blogbackend.dto.Posts;
+import com.sencerseven.blogbackend.funtions.BlogBackendFunctions;
 import com.sencerseven.blogbackend.service.PostsService;
 
 @Service("postsService")
@@ -32,8 +33,8 @@ public class PostsServiceImpl implements PostsService{
 	@Override
 	@Transactional(rollbackOn = Exception.class)
 	public void addPosts(Posts posts) {
-		// TODO Auto-generated method stub
 		postsDAO.addPosts(posts);
+		posts.setPostUrl(BlogBackendFunctions.toPrettyURL(posts.getTitle(),posts.getId()));
 	}
 
 	@Override
@@ -84,6 +85,16 @@ public class PostsServiceImpl implements PostsService{
 	
 		return query.getResultList();
 	}
+
+	@Override
+	@Transactional
+	public Posts getByUrlName(String tempUrl) {
+		String queryString = ("FROM Posts p WHERE p.postUrl = :postUrl");
+		Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString,Posts.class);
+		query.setParameter("postUrl", tempUrl);
+		return query.getSingleResult();
+	}
+	
 	
 
 }

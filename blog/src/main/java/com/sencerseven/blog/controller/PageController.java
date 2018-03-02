@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sencerseven.blog.functions.BlogFunctions;
 import com.sencerseven.blogbackend.dto.Comment;
 import com.sencerseven.blogbackend.dto.Posts;
 import com.sencerseven.blogbackend.service.CommentService;
@@ -32,6 +35,24 @@ public class PageController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value= {"/category/{category}/post/{post}"})
+	public ModelAndView postPage(@PathVariable("category")String tempCategoryName,@PathVariable("post")String tempPostName ) {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "home");
+		mv.addObject("userClickHomePage",true);
+		
+		Posts post= postService.getByUrlName(tempPostName);
+		List<Comment> comment = post.getComment();
+		mv.addObject("getLastPosts", post);
+		mv.addObject("getLastPostsComment", comment);
+		
+		
+		
+		return mv;
+		
+	}
+	
 	
 	@RequestMapping(value = {"/contact"})
 	public ModelAndView contactPage() {

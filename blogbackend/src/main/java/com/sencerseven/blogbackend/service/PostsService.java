@@ -18,6 +18,7 @@ public interface PostsService {
 	
 	public Posts getLastPosts();
 	public List<Posts> getLimitLastPosts(int limit,int startAt);
+	public Posts getByUrlName(String tempUrl);
 	
 	
 }

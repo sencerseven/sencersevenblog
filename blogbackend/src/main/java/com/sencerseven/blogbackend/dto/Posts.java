@@ -37,6 +37,9 @@ public class Posts implements Serializable{
 	@Column
 	private String content;
 	
+	@Column(name="post_url")
+	private String postUrl;
+	
 	@ManyToOne
 	@JoinColumn(name="category_id",nullable=false)
 	private Category category;
@@ -106,6 +109,17 @@ public class Posts implements Serializable{
 
 	public void setCreated_date(Date created_date) {
 		this.created_date = created_date;
+	}
+	
+
+	
+
+	public String getPostUrl() {
+		return postUrl;
+	}
+
+	public void setPostUrl(String postUrl) {
+		this.postUrl = postUrl;
 	}
 
 	@Override

@@ -1,8 +1,13 @@
 package com.sencerseven.blogbackend.test;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -13,6 +18,7 @@ import com.sencerseven.blogbackend.dao.CategoryDAO;
 import com.sencerseven.blogbackend.dao.PostsDAO;
 import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.dto.Posts;
+import com.sencerseven.blogbackend.service.CategoryService;
 import com.sencerseven.blogbackend.service.PostsService;
 
 public class PostsTestCase {
@@ -22,7 +28,7 @@ public class PostsTestCase {
 	static PostsDAO postsDAO;
 	
 	
-	static CategoryDAO categoryDAO;
+	static CategoryService categoryService;
 	
 	
 	static PostsService postsService;
@@ -36,11 +42,11 @@ public class PostsTestCase {
 		
 		context.refresh();
 		
-		categoryDAO = context.getBean("categoryDAO",CategoryDAO.class);
-		
 		postsService = context.getBean("postsService",PostsService.class);
+		categoryService = context.getBean("categoryService",CategoryService.class);
 		
 	}
+	
 //	@Test
 //	public void addPosts() {
 //		Posts posts = new Posts();
@@ -63,27 +69,31 @@ public class PostsTestCase {
 //		
 //	}
 
-//	@Test
-//	public void newPostAdd() {
-//		Posts post = new Posts();
-//		post.setContent("Iphone x ÇIKTI insanlar çıldırmış olmalı 3");
-//		post.setTitle("Iphone X");
-//		post.setCategory(categoryDAO.getCategory(1));
-//		post.setCreated_date(new Date());
-//		postsService.addPosts(post);
-//		
-//		
-//		
-//	}
-	
 	@Test
-	public void getLimitForPost() {
-		postsService.getLimitLastPosts(3, 0);
+	public void newPostAdd() {
+		Posts post = new Posts();
+		post.setContent("Dün gece tanıtılan bu telefonun tasarımını görenler şaşkına döndü. İşte görünüşte iPhone X'in birebir kopyası gibi görünen; ama özellikleriyle dikkat çeken o telefon...");
+		post.setTitle("Dün akşam tanıtıldı! Bu telefon çok ses getirecek");
+		
+		post.setCategory(categoryService.getCategory(1));
+		post.setCreated_date(new Date());
+		postsService.addPosts(post);
+		
+		
+		
 	}
 	
+//	@Test
+//	public void getLimitForPost() {
+//		postsService.getLimitLastPosts(3, 0);
+//	}
+//	
 //	@Test
 //	public void uniqueResult() {
 //		System.out.println(postsService.getLastPosts().getTitle());
 //	}
+	
+
+	
 	
 }

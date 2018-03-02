@@ -13,7 +13,6 @@ import com.sencerseven.blogbackend.dao.CategoryDAO;
 import com.sencerseven.blogbackend.dto.Category;
 
 @Repository("categoryDAO")
-@Transactional(rollbackOn = Exception.class)
 public class CategoryDAOImpl implements CategoryDAO{
 
 	@Autowired
