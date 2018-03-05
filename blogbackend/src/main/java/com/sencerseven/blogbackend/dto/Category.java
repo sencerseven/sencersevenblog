@@ -48,7 +48,7 @@ public class Category implements Serializable{
 	@Column(name="category_url")
 	private String categoryUrl;
 
-	@OneToMany(mappedBy="category",cascade =  {CascadeType.ALL})
+	@OneToMany(mappedBy="category",cascade =  {CascadeType.ALL},fetch=FetchType.EAGER)
 	private List<Posts> posts;
 	
 	

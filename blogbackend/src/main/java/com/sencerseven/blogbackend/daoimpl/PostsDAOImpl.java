@@ -53,8 +53,13 @@ public class PostsDAOImpl implements PostsDAO {
 
 	@Override
 	public List<Posts> allPosts() {
-		// TODO Auto-generated method stub
+		try {			
+			return sessionFactory.getCurrentSession().createQuery("From Posts",Posts.class).getResultList();
+		} catch (Exception e) {
+			
+		}
 		return null;
+		
 	}
 
 	@Override

@@ -1,18 +1,8 @@
-package com.sencerseven.blog.controller;
+package com.sencerseven.blog.controller.admin;
 
-import java.io.IOException;
-import java.lang.invoke.MethodType;
 import java.util.List;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.validation.Valid;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,24 +21,14 @@ import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.service.CategoryService;
 
 @Controller
-@RequestMapping(value= {"/admin"})
-public class AdminPageController{
+@RequestMapping(value= {"/admin/category"})
+public class AdminCategoryController {
 
 	@Autowired
 	CategoryService categoryService;	
 	
+
 	@RequestMapping
-	public ModelAndView indexPage() {
-		ModelAndView mv = new ModelAndView("admin");
-		
-		mv.addObject("title", "Admin DashBoard");
-		mv.addObject("adminClickHomePage", true);
-		
-		
-		return mv;
-	}
-	
-	@RequestMapping(	"/category")
 	public ModelAndView categoryPage(@RequestParam(name="param",required=false)String param ) {
 		ModelAndView mv = new ModelAndView("admin");
 		
@@ -61,7 +41,7 @@ public class AdminPageController{
 		return mv;
 	}
 	
-	@PostMapping("/category/{id}/activation")
+	@PostMapping("/{id}/activation")
 	@ResponseBody
 	public String categoryActivation(@PathVariable("id")int id) {
 		String proccess = "Your category is ";
@@ -75,7 +55,7 @@ public class AdminPageController{
 		
 	}
 	
-	@PostMapping("/category/{id}/delete")
+	@PostMapping("/{id}/delete")
 	@ResponseBody
 	public String categoryDeleting(@PathVariable("id")int id) {
 		
@@ -86,7 +66,7 @@ public class AdminPageController{
 		return "true";
 	}
 	
-	@RequestMapping(value = "/category/add",method=RequestMethod.GET)
+	@RequestMapping(value = "/add",method=RequestMethod.GET)
 	public ModelAndView categorAddPage() {
 		ModelAndView mv = new ModelAndView("admin");
 		
@@ -100,7 +80,7 @@ public class AdminPageController{
 		
 	}
 	
-	@RequestMapping(value = "/category/edit/{id}",method=RequestMethod.GET)
+	@RequestMapping(value = "/edit/{id}",method=RequestMethod.GET)
 	public ModelAndView categorEditPage(@PathVariable("id")int id) {
 		ModelAndView mv = new ModelAndView("admin");
 		
@@ -115,7 +95,7 @@ public class AdminPageController{
 	}
 	
 	
-	@RequestMapping(value = "/category/add",method=RequestMethod.POST)
+	@RequestMapping(value = "/add",method=RequestMethod.POST)
 	public String categoryAddSubmission(@Valid @ModelAttribute("category")Category category,BindingResult result,Model model) {
 		
 		if(result.hasErrors()) {
@@ -133,6 +113,5 @@ public class AdminPageController{
 		
 		
 	}
-	
 	
 }

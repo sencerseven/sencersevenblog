@@ -26,12 +26,11 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	@Transactional
-	public boolean addCategory(Category category) {
-		
-		category.setCategoryUrl(BlogBackendFunctions.toPrettyURL(category.getCategoryName(),null));
-		
-		return categoryDAO.addCategory(category);
+	@Transactional(rollbackOn = Exception.class)
+	public void addCategory(Category category) {
+		 categoryDAO.addCategory(category);
+		category.setCategoryUrl(BlogBackendFunctions.toPrettyURL(category.getCategoryName(),category.getId()));
+
 	}
 
 	@Override
@@ -51,7 +50,9 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	@Transactional
 	public boolean saveOrUpdate(Category category) {
-		return categoryDAO.saveOrUpdate(category);
+		 categoryDAO.saveOrUpdate(category);
+			category.setCategoryUrl(BlogBackendFunctions.toPrettyURL(category.getCategoryName(),category.getId()));
+			return true;
 	}
 
 	@Override

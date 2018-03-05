@@ -67,6 +67,15 @@
 			<%@include file="./admin_page/category-add.jsp" %>
         </c:if>
         
+        <c:if test="${adminClickPostsPage == true }">
+			<%@include file="./admin_page/post.jsp" %>
+        </c:if>
+
+		<c:if test="${adminClickPostAddPage == true }">
+			<%@include file="./admin_page/post-add.jsp" %>
+        </c:if>        
+        
+        
         </div> <!-- .content -->
     </div><!-- /#right-panel -->
 

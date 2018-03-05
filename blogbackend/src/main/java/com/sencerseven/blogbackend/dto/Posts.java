@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="Posts")
@@ -44,6 +45,17 @@ public class Posts implements Serializable{
 	@JoinColumn(name="category_id",nullable=false)
 	private Category category;
 	
+	@Transient
+	private int categoryId;
+	
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="posts",cascade= {CascadeType.ALL})
 	private List<Comment> comment;
 	

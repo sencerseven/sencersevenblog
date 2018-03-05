@@ -30,14 +30,13 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 
 	@Override
-	public boolean addCategory(Category category) {
+	public void addCategory(Category category) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.persist(category);
 		}catch (Exception e) {
 			session.merge(category);
 		}
-		return true;
 	}
 
 	@Override

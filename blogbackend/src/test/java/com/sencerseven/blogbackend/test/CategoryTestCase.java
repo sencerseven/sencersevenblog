@@ -41,7 +41,6 @@ public class CategoryTestCase {
 		category.setCategoryDescription("Teknoloji konularını bu sayfada bulabilirsiniz");
 		category.setActive(true);
 		
-		assertEquals("Böyle bir kategori malesef eklenemedi",true, categoryService.addCategory(category));
 		
 	}
 	

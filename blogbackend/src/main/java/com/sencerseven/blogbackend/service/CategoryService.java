@@ -7,7 +7,7 @@ import com.sencerseven.blogbackend.dto.Category;
 public interface CategoryService {
 	
 	public Category getCategory(int id);
-	public boolean addCategory(Category category);
+	public void addCategory(Category category);
 	public boolean updateCategory(Category category);
 	public boolean deleteCategory(Category category);
 	
