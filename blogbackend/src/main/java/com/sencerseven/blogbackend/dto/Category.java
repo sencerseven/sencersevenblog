@@ -14,6 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javassist.CtField.Initializer;
 
@@ -31,9 +35,11 @@ public class Category implements Serializable{
 	private int id;
 	
 	@Column(name="category_name")
+	@NotBlank(message="not empty") 
 	private String categoryName;
 	
 	@Column(name="category_description")
+	@NotBlank(message="not empty") 
 	private String categoryDescription;
 	
 	@Column(name = "is_active")

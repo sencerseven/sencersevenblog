@@ -36,8 +36,8 @@ public class CommentTestCase {
 		
 		
 		Comment comment = new Comment();
-		comment.setComment("Bitcoin candır !");
-		comment.setPosts(postsService.getPosts(1));
+		comment.setComment("Abi efsanesin yaa.");
+		comment.setPosts(postsService.getPosts(3));
 		
 		commentService.addComment(comment);
 

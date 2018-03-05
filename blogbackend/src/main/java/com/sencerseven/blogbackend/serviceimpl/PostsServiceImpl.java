@@ -68,11 +68,17 @@ public class PostsServiceImpl implements PostsService{
 	@Override
 	@Transactional
 	public Posts getLastPosts() {
-		String queryString = "FROM Posts p ORDER BY p.id DESC";
-		Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
-		query.setMaxResults(1);
-	
-		return query.getSingleResult();
+		try {
+			String queryString = "FROM Posts p ORDER BY p.id DESC";
+			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
+			query.setMaxResults(1);
+			
+			return query.getSingleResult();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 	@Override

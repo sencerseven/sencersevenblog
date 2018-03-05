@@ -29,9 +29,12 @@ public class PageController {
 		mv.addObject("userClickHomePage",true);
 		
 		Posts posts = postService.getLastPosts();
-		List<Comment> comment = posts.getComment();
-		mv.addObject("getLastPosts", posts);
-		mv.addObject("getLastPostsComment", comment);
+		if(posts != null) {			
+			List<Comment> comment = posts.getComment();
+			mv.addObject("getLastPosts", posts);
+			mv.addObject("getLastPostsComment", comment);
+		}
+		
 
 		return mv;
 	}

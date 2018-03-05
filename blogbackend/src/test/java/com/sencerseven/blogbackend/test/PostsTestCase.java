@@ -72,8 +72,8 @@ public class PostsTestCase {
 	@Test
 	public void newPostAdd() {
 		Posts post = new Posts();
-		post.setContent("Dün gece tanıtılan bu telefonun tasarımını görenler şaşkına döndü. İşte görünüşte iPhone X'in birebir kopyası gibi görünen; ama özellikleriyle dikkat çeken o telefon...");
-		post.setTitle("Dün akşam tanıtıldı! Bu telefon çok ses getirecek");
+		post.setContent("HTC'nin merakla beklenen akıllı telefonu HTC U12'nin özellikleri, çıkış tarihi ve fiyatı sızdırıldı.");
+		post.setTitle("HTC U12'nin özellikleri, çıkış tarihi ve fiyatı sızdırıld");
 		
 		post.setCategory(categoryService.getCategory(1));
 		post.setCreated_date(new Date());

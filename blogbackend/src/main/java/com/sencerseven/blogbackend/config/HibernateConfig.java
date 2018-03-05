@@ -18,10 +18,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class HibernateConfig {
 	
-	private static String DATABASE_URL = "jdbc:h2:tcp://localhost/~/sencersevenblog";
-	private static String DATABASE_DRIVER = "org.h2.Driver";
-	private static String DATABASE_USER = "sa";
-	private static String DATABASE_PASSWORD = "";
+	private static String DATABASE_URL = "jdbc:mysql://localhost:3306/sencersevenblog?useSSL=false&characterEncoding=utf-8";
+	private static String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
+	private static String DATABASE_USER = "root";
+	private static String DATABASE_PASSWORD = "123";
 	
 	@Bean
 	public DataSource dataSource() {
@@ -49,9 +49,11 @@ public class HibernateConfig {
 	
 	private Properties properties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		properties.put("hibernate.show_sql", true);
 		properties.put("hibernate.format_sql", true);
+		properties.put("hibernate.connection.useUnicode", true);
+		properties.put("hibernate.connection.characterEncoding", "UTF-8");
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		
 		return properties;

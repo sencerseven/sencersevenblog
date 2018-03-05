@@ -51,8 +51,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	@Transactional
 	public boolean saveOrUpdate(Category category) {
-		// TODO Auto-generated method stub
-		return false;
+		return categoryDAO.saveOrUpdate(category);
 	}
 
 	@Override
