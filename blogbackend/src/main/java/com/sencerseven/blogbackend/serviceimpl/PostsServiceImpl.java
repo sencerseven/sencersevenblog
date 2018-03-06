@@ -61,8 +61,10 @@ public class PostsServiceImpl implements PostsService{
 	@Override
 	@Transactional
 	public boolean saveOrUpdate(Posts posts) {
-		// TODO Auto-generated method stub
-		return false;
+		postsDAO.saveOrUpdate(posts);
+		posts.setPostUrl(BlogBackendFunctions.toPrettyURL(posts.getTitle(),posts.getId()));	
+		return true;
+				
 	}
 	
 	@Override
@@ -84,21 +86,33 @@ public class PostsServiceImpl implements PostsService{
 	@Override
 	@Transactional
 	public List<Posts> getLimitLastPosts(int limit, int startAt) {
-		String queryString = "FROM Posts p ORDER BY p.id DESC";
-		Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
-		query.setMaxResults(limit);
-		query.setFirstResult(startAt);
-	
-		return query.getResultList();
+		try {
+			String queryString = "FROM Posts p ORDER BY p.id DESC";
+			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
+			query.setMaxResults(limit);
+			query.setFirstResult(startAt);
+			return query.getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
 	}
 
 	@Override
 	@Transactional
 	public Posts getByUrlName(String tempUrl) {
-		String queryString = ("FROM Posts p WHERE p.postUrl = :postUrl");
-		Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString,Posts.class);
-		query.setParameter("postUrl", tempUrl);
-		return query.getSingleResult();
+		try {
+			
+			String queryString = ("FROM Posts p WHERE p.postUrl = :postUrl");
+			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString,Posts.class);
+			query.setParameter("postUrl", tempUrl);
+			return query.getSingleResult();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 	
 	

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sencerseven.blog.controller.advice.NotFoundException;
 import com.sencerseven.blog.functions.BlogFunctions;
 import com.sencerseven.blogbackend.dto.Comment;
 import com.sencerseven.blogbackend.dto.Posts;
@@ -33,6 +34,8 @@ public class PageController {
 			List<Comment> comment = posts.getComment();
 			mv.addObject("getLastPosts", posts);
 			mv.addObject("getLastPostsComment", comment);
+		}else {
+			
 		}
 		
 
@@ -40,18 +43,17 @@ public class PageController {
 	}
 	
 	@RequestMapping(value= {"/category/{category}/post/{post}"})
-	public ModelAndView postPage(@PathVariable("category")String tempCategoryName,@PathVariable("post")String tempPostName ) {
+	public ModelAndView postPage(@PathVariable("category")String tempCategoryName,@PathVariable("post")String tempPostName ) throws NotFoundException  {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "home");
 		mv.addObject("userClickHomePage",true);
 		
-		Posts post= postService.getByUrlName(tempPostName);
-		List<Comment> comment = post.getComment();
-		mv.addObject("getLastPosts", post);
-		mv.addObject("getLastPostsComment", comment);
-		
-		
-		
+		Posts post= postService.getByUrlName(tempPostName);	
+			if(post == null) throw new NotFoundException();				
+				List<Comment> comment = post.getComment();
+				mv.addObject("getLastPosts", post);
+				mv.addObject("getLastPostsComment", comment);
+			
 		return mv;
 		
 	}

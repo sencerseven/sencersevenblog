@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sencerseven.blogbackend.dto.Category;
@@ -71,12 +73,37 @@ public class AdminPostController {
 				return "admin";
 			}
 			post.setCategory( categoryService.getCategory(post.getCategoryId()));
-			post.setCreated_date(new Date());
 			
+			if(post.getId() == 0)
+				post.setCreated_date(new Date());
+			else
+				post.setCreated_date(postsService.getPosts(post.getId()).getCreated_date());
 			
-			postsService.addPosts(post);
+			postsService.saveOrUpdate(post);
 	
 		return "redirect:/admin/posts?param=success";
+	}
+	
+	@RequestMapping(value = "/{id}/delete")
+	@ResponseBody
+	public String adminPostDelete(@PathVariable("id")int id) {
+		Posts posts = postsService.getPosts(id);
+			postsService.deletePosts(posts);
+			return "true";
+		
+	}
+	
+	@GetMapping(value = "/{id}/edit")
+	public ModelAndView adminPostEdit(@PathVariable("id")int id) {
+		ModelAndView mv = new ModelAndView("admin");
+		Posts post = postsService.getPosts(id);
+		post.setCategoryId(post.getCategory().getId());
+		mv.addObject("title", "Post Add Page");
+		mv.addObject("adminClickPostAddPage", true);
+		mv.addObject("post", post);
+		List<Category> category = categoryService.allCategory();
+		mv.addObject("categories", category);
+		return mv;
 	}
 	
 	

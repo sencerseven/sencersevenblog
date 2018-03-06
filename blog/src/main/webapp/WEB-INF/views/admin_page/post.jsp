@@ -38,12 +38,13 @@
                             <a href="${contextRoot}/posts/add" class="btn btn-primary pull-right">Add Post</a>
                         </div>
                         <div class="card-body">
-                  <table id="data-table" class="table table-striped table-bordered">
+                  <table id="data-table-post" class="table table-striped table-bordered">
                     <thead>
                       <tr>
                       	<th>ID</th>
                        	<th>Name</th>
                         	<th>Description</th>
+                        	<th>Created Date</th>
                         <th>Status</th>
                         <th></th>
                       </tr>
@@ -52,12 +53,13 @@
                       <c:forEach items="${posts}" var="post">                      
 	                      <tr class="data-table-row-1">
 	                        <td>${post.id}</td>
-	                        <td>${category.title}</td>
+	                        <td>${post.title}</td>
 	                        <td>${fn:substring(post.content,0,30)}</td>
+	                        <td>${post.created_date}</td>
 	                        <td>
 							</td>
 							<td>
-								<a href="${contextRoot}/post/edit/${post.id}"  class="btn btn-warning btn-sm edit"><i class="fa fa-eye" alt="edit"></i></a>
+								<a href="${contextRoot}/posts/${post.id}/edit"  class="btn btn-warning btn-sm edit"><i class="fa fa-eye" alt="edit"></i></a>
 								<button type="button" value="${post.id}" class="btn btn-danger btn-sm delete"><i class="fa fa-trash-o" alt="delete"></i></button>
 							</td>
 	                      </tr>

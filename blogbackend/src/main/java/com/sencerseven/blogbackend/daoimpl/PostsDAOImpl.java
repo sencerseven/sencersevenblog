@@ -47,7 +47,13 @@ public class PostsDAOImpl implements PostsDAO {
 
 	@Override
 	public boolean deletePosts(Posts posts) {
-		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().delete(posts);
+			return true; 
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return false;
 	}
 
