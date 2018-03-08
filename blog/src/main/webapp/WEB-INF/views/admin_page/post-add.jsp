@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <a href="${contextRoot}/admin/category" class="btn "></a>
-<form:form class="form-horizontal" modelAttribute="post" method="POST" action="${contextRoot}/posts/add" >
+<form:form class="form-horizontal" modelAttribute="post" method="POST" action="${contextRoot}/posts/add" enctype="multipart/form-data">
 	<form:hidden path="id"/>
 	<div class="form-group">
 		
@@ -31,6 +31,20 @@
 				</c:forEach>
 			</form:select>
 			<form:errors path="category" ></form:errors>
+		</div>
+	</div>
+	
+	
+	<div class="form-group">
+		
+		<div class="col-md-8">
+		<label class="control-label col-md-4" for="">Enter Description</label>
+			
+				<c:forEach items="${multipartFiles}" var="item" varStatus="key">
+					<form:input type="file" path="files[${key.index}]" />
+					<form:errors path="files[${key.index}]" ></form:errors>
+				</c:forEach>
+			
 		</div>
 	</div>
 	

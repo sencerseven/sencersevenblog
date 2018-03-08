@@ -1,7 +1,9 @@
 package com.sencerseven.blog.controller;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,14 +24,15 @@ public class PageController {
 	@Autowired
 	PostsService postService;
 	
+	
 	@RequestMapping(value = {"/","/index","/home"})
 	public ModelAndView indexPage() {
 		ModelAndView mv = new ModelAndView("page");
 		
 		mv.addObject("title", "home");
 		mv.addObject("userClickHomePage",true);
-		
-		Posts posts = postService.getLastPosts();
+		Posts posts = null;
+		posts = postService.getLastPosts();
 		if(posts != null) {			
 			List<Comment> comment = posts.getComment();
 			mv.addObject("getLastPosts", posts);
@@ -47,7 +50,6 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "home");
 		mv.addObject("userClickHomePage",true);
-		
 		Posts post= postService.getByUrlName(tempPostName);	
 			if(post == null) throw new NotFoundException();				
 				List<Comment> comment = post.getComment();

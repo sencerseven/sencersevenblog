@@ -24,10 +24,10 @@ public class GlobalController {
 	@Autowired
 	PostsService postsService;
 	
-	@ModelAttribute(name="allCategories")
-	public List<Category> getAllCategories(){
-		return categoryDAO.allCategory();
-	}
+//	@ModelAttribute(name="allCategories")
+//	public List<Category> getAllCategories(){
+//		return categoryDAO.allCategory();
+//	}
 	
 	@ModelAttribute(name="getSidebarPosts")
 	public List<Posts> getSidebarPosts() {

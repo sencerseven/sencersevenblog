@@ -1,5 +1,6 @@
 package com.sencerseven.blogbackend.service;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import com.sencerseven.blogbackend.dto.Posts;
@@ -18,7 +19,7 @@ public interface PostsService {
 	
 	public Posts getLastPosts();
 	public List<Posts> getLimitLastPosts(int limit,int startAt);
-	public Posts getByUrlName(String tempUrl);
+	public Posts getByUrlName(String tempUrl );
 	
 	
 }

@@ -37,7 +37,7 @@ public class CommentTestCase {
 		
 		Comment comment = new Comment();
 		comment.setComment("Abi efsanesin yaa.");
-		comment.setPosts(postsService.getPosts(3));
+		comment.setPosts(postsService.getPosts(38));
 		
 		commentService.addComment(comment);
 

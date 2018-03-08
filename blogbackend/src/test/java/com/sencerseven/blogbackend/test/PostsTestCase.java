@@ -19,6 +19,7 @@ import com.sencerseven.blogbackend.dao.PostsDAO;
 import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.dto.Posts;
 import com.sencerseven.blogbackend.service.CategoryService;
+import com.sencerseven.blogbackend.service.ImagesService;
 import com.sencerseven.blogbackend.service.PostsService;
 
 public class PostsTestCase {
@@ -33,6 +34,8 @@ public class PostsTestCase {
 	
 	static PostsService postsService;
 	
+	static ImagesService imagesService;
+	
 	
 	@BeforeClass
 	public static void init() {
@@ -44,7 +47,7 @@ public class PostsTestCase {
 		
 		postsService = context.getBean("postsService",PostsService.class);
 		categoryService = context.getBean("categoryService",CategoryService.class);
-		
+		imagesService = context.getBean("imagesService",ImagesService.class);
 	}
 	
 //	@Test

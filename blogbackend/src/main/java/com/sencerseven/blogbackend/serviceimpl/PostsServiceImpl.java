@@ -1,9 +1,12 @@
 package com.sencerseven.blogbackend.serviceimpl;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +29,9 @@ public class PostsServiceImpl implements PostsService{
 	@Override
 	@Transactional
 	public Posts getPosts(int id) {
-		// TODO Auto-generated method stub
-		return postsDAO.getPosts(id);
+		Posts post = postsDAO.getPosts(id);
+		Hibernate.initialize(post.getComment());
+		return post;
 	}
 
 	@Override
@@ -71,14 +75,17 @@ public class PostsServiceImpl implements PostsService{
 	@Transactional
 	public Posts getLastPosts() {
 		try {
+			
 			String queryString = "FROM Posts p ORDER BY p.id DESC";
 			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
 			query.setMaxResults(1);
-			
-			return query.getSingleResult();
+			Posts post = query.getSingleResult();
+			Hibernate.initialize(post.getComment());
+			Hibernate.initialize(post.getImages());
+			return post;
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+		
 		}
 		return null;
 	}
@@ -91,6 +98,11 @@ public class PostsServiceImpl implements PostsService{
 			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString, Posts.class);
 			query.setMaxResults(limit);
 			query.setFirstResult(startAt);
+			List<Posts> posts = query.getResultList();
+			for(Posts tempPost : posts) {
+				Hibernate.initialize(tempPost.getImages());
+			}
+			
 			return query.getResultList();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -102,12 +114,17 @@ public class PostsServiceImpl implements PostsService{
 	@Override
 	@Transactional
 	public Posts getByUrlName(String tempUrl) {
-		try {
+		
+		
+		try {	
 			
 			String queryString = ("FROM Posts p WHERE p.postUrl = :postUrl");
 			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString,Posts.class);
 			query.setParameter("postUrl", tempUrl);
-			return query.getSingleResult();
+			Posts post = query.getSingleResult();
+			Hibernate.initialize(post.getComment());
+			Hibernate.initialize(post.getImages());
+			return post;
 			
 		} catch (Exception e) {
 			// TODO: handle exception

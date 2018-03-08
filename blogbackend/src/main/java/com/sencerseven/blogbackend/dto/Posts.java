@@ -1,6 +1,7 @@
 package com.sencerseven.blogbackend.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +20,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table(name="Posts")
 public class Posts implements Serializable{
 
+	
+	@Autowired
+	SessionFactory sessionFactory;
 	/**
 	 * 
 	 */
@@ -46,6 +55,17 @@ public class Posts implements Serializable{
 	private Category category;
 	
 	@Transient
+	private List<MultipartFile> files;
+
+	public List<MultipartFile> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<MultipartFile> files) {
+		this.files = files;
+	}
+
+	@Transient
 	private int categoryId;
 	
 	public int getCategoryId() {
@@ -56,8 +76,11 @@ public class Posts implements Serializable{
 		this.categoryId = categoryId;
 	}
 
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="posts",cascade= {CascadeType.ALL})
-	private List<Comment> comment;
+	@OneToMany(mappedBy="posts",cascade= {CascadeType.ALL})
+	private List<Comment> comment = new ArrayList<Comment>();
+	
+	@OneToMany(mappedBy="posts", cascade= {CascadeType.ALL})
+	private List<Images> images;
 	
 	@Temporal(TemporalType.DATE)
 	private Date created_date;
@@ -122,9 +145,6 @@ public class Posts implements Serializable{
 	public void setCreated_date(Date created_date) {
 		this.created_date = created_date;
 	}
-	
-
-	
 
 	public String getPostUrl() {
 		return postUrl;
@@ -132,6 +152,16 @@ public class Posts implements Serializable{
 
 	public void setPostUrl(String postUrl) {
 		this.postUrl = postUrl;
+	}
+	
+
+
+	public List<Images> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Images> images) {
+		this.images = images;
 	}
 
 	@Override

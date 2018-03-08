@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -62,6 +63,7 @@ public class Comment implements Serializable{
 
 	public void setPosts(Posts posts) {
 		this.posts = posts;
+		posts.getComment().add(this);
 	}
 
 	@Override

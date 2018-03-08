@@ -1,8 +1,10 @@
 package com.sencerseven.blog.controller.admin;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sencerseven.blog.util.FileUploadUtility;
+import com.sencerseven.blog.validation.FileValidator;
 import com.sencerseven.blogbackend.dto.Category;
+import com.sencerseven.blogbackend.dto.Images;
 import com.sencerseven.blogbackend.dto.Posts;
 import com.sencerseven.blogbackend.service.CategoryService;
+import com.sencerseven.blogbackend.service.ImagesService;
 import com.sencerseven.blogbackend.service.PostsService;
 
 @Controller
@@ -31,6 +38,11 @@ public class AdminPostController {
 
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	ImagesService imagesService;
+	
+	
 	
 	@RequestMapping
 	public ModelAndView adminPostsPage() {
@@ -57,6 +69,15 @@ public class AdminPostController {
 		
 		Posts post = new Posts();
 		List<Category> category = categoryService.allCategory();
+		
+		
+		MultipartFile multipartFile = null;
+		List<MultipartFile> multipartFiles = new ArrayList<MultipartFile>();
+		multipartFiles.add(multipartFile);
+		
+		post.setFiles(multipartFiles);
+		
+		mv.addObject("multipartFiles", multipartFiles);
 		mv.addObject("categories", category);
 		mv.addObject("post", post);
 		
@@ -65,13 +86,30 @@ public class AdminPostController {
 	}
 	
 	@PostMapping(value = {"/add"})
-	public String adminPostSubmission(@Valid @ModelAttribute("post")Posts post,BindingResult result,Model model) {
+	public String adminPostSubmission(@Valid @ModelAttribute("post")Posts post,BindingResult result,Model model,HttpServletRequest request) {
 		
+			new FileValidator().validate(post, result);
+			
 			if(result.hasErrors()) {
+				MultipartFile multipartFile = null;
+				List<MultipartFile> multipartFiles = new ArrayList<MultipartFile>();
+				multipartFiles.add(multipartFile);
+				List<Category> category = categoryService.allCategory();
+
+				model.addAttribute("categories", category);
+				model.addAttribute("multipartFiles", multipartFiles);
 				model.addAttribute("title", "Post Add Page");
 				model.addAttribute("adminClickPostAddPage", true);
 				return "admin";
 			}
+			
+			
+			
+			System.out.println(result.toString());
+			
+			
+			
+
 			post.setCategory( categoryService.getCategory(post.getCategoryId()));
 			
 			if(post.getId() == 0)
@@ -81,6 +119,15 @@ public class AdminPostController {
 			
 			postsService.saveOrUpdate(post);
 	
+			List<String> tempString = FileUploadUtility.multiFileUpload(request, post.getFiles());
+			for (String string : tempString) {
+			Images tempImages = new Images();
+			tempImages.setImageName(string);
+			tempImages.setPosts(post);
+			imagesService.addImages(tempImages);
+		}
+		
+			
 		return "redirect:/admin/posts?param=success";
 	}
 	

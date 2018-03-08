@@ -34,7 +34,7 @@
 											
 												<c:forEach items="${getSidebarPosts}" var="sidebarPost">
 													<div class="post-thumbnail-entry">
-														<img alt="" src="${contextRoot}/resources/images/blog/thumbnail/5.jpg">
+														<img alt="" src="${contextRoot}/resources/images/uploads/${sidebarPost.images[0].imageName}">
 														<div class="post-thumbnail-content">
 															${fn:substring(sidebarPost.title,0,40)}.<a href="${contextRoot}/category/${sidebarPost.category.categoryUrl}/post/${sidebarPost.postUrl}">Devamı için..</a> <span
 																class="post-date"><i class="fa fa-clock-o"></i> 6m

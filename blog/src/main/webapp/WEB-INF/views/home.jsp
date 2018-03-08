@@ -8,11 +8,10 @@
 								<div class="post-item-wrap">
 									<div class="carousel dots-inside arrows-visible" data-items="1"
 										data-lightbox="gallery">
-										<a href="${contextRoot}/resources/images/blog/16.jpg" data-lightbox="gallery-item">
-											<img alt="image" src="${contextRoot}/resources/images/blog/16.jpg">
-										</a> <a href="${contextRoot}/resources/images/blog/11.jpg" data-lightbox="gallery-item">
-											<img alt="image" src="${contextRoot}/resources/images/blog/11.jpg">
-										</a>
+										<c:forEach items="${getLastPosts.images}" var="image">									
+											<a href="${contextRoot}/resources/images/uploads/${image.imageName}" data-lightbox="gallery-item">
+												<img alt="image" src="${contextRoot}/resources/images/uploads/${image.imageName}"></a>
+										</c:forEach>
 									</div>
 									<div class="post-item-description">
 										<h2>${getLastPosts.title }</h2>
