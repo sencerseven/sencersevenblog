@@ -1,4 +1,4 @@
-package com.sencerseven.blog.controller.admin;
+package com.sencerseven.blog.admin;
 
 import java.io.IOException;
 import java.lang.invoke.MethodType;
@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sencerseven.blogbackend.dto.Category;
@@ -34,6 +35,8 @@ import com.sencerseven.blogbackend.service.CategoryService;
 @RequestMapping(value= {"/admin"})
 public class AdminPageController{
 
+	
+	
 	
 	@RequestMapping
 	public ModelAndView indexPage() {
@@ -45,6 +48,16 @@ public class AdminPageController{
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="/login")
+	public ModelAndView loginPage(@RequestParam(name="error",required = false)String error,
+			@RequestParam(name="logout",required = false)String logout) {
+		ModelAndView mv = new ModelAndView("admin_page/login");
+		mv.addObject("title", "Admin Login Page");
+		mv.addObject("adminClickLoginPage", true);
+		return mv;
+	}
+	
 	
 	
 	

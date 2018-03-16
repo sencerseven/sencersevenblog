@@ -1,4 +1,4 @@
-package com.sencerseven.blog.controller.admin;
+package com.sencerseven.blog.admin;
 
 import java.util.List;
 
@@ -55,12 +55,13 @@ public class AdminCategoryController {
 		
 	}
 	
-	@PostMapping("/{id}/delete")
+	@RequestMapping("/{id}/delete")
 	@ResponseBody
 	public String categoryDeleting(@PathVariable("id")int id) {
 		
-		
-		categoryService.deleteCategory(categoryService.getCategory(id));
+		Category category = categoryService.getCategory(id);
+		System.out.println(category.toString());
+		categoryService.deleteCategory(category);
 		
 		
 		return "true";

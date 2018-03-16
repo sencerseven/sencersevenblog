@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,18 +19,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="Posts")
 public class Posts implements Serializable{
 
-	
-	@Autowired
-	SessionFactory sessionFactory;
 	/**
 	 * 
 	 */
@@ -56,6 +49,12 @@ public class Posts implements Serializable{
 	
 	@Transient
 	private List<MultipartFile> files;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id",nullable=false)
+	private User user;
+	
+	
 
 	public List<MultipartFile> getFiles() {
 		return files;
@@ -76,7 +75,7 @@ public class Posts implements Serializable{
 		this.categoryId = categoryId;
 	}
 
-	@OneToMany(mappedBy="posts",cascade= {CascadeType.ALL})
+	@OneToMany(mappedBy="posts")
 	private List<Comment> comment = new ArrayList<Comment>();
 	
 	@OneToMany(mappedBy="posts", cascade= {CascadeType.ALL})
@@ -84,6 +83,9 @@ public class Posts implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	private Date created_date;
+	
+	@Column(name="view",nullable= false,columnDefinition="int default 0")
+	private int view;
 	
 	
 	public Posts() {
@@ -162,6 +164,24 @@ public class Posts implements Serializable{
 
 	public void setImages(List<Images> images) {
 		this.images = images;
+	}
+
+	
+	
+	public int getView() {
+		return view;
+	}
+
+	public void setView(int view) {
+		this.view = view;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

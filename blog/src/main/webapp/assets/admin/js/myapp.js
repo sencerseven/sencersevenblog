@@ -1,5 +1,16 @@
 $(function(){
 	
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	if(token.length > 0 && header.length > 0){
+		console.log("tokenlar geldi");
+		$(document).ajaxSend(function(e,xhr,options){
+			xhr.setRequestHeader(header,token);
+		});
+		
+	}
+	
 	$('.switch input[type="checkbox"]').on('change',function(){
 		
 		
@@ -25,7 +36,6 @@ $('#data-table button[type="button"]').on('click',function(){
 		var table = $('#data-table').DataTable();
 		
 		var deleteUrl = window.contextRoot +'/category/'+value+'/delete';
-
 		bootbox.confirm({
 			size:'medium',
 			title:'Delete Category!',

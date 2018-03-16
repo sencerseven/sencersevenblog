@@ -17,6 +17,10 @@
     <title>Sufee Admin - HTML5 Admin Template</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
@@ -37,8 +41,6 @@
 
 </head>
 <body>
-
-
     <!-- Left Panel -->
 		<%@include file="./admin_shared/left-panel.jsp" %>
     
@@ -54,6 +56,7 @@
 
         	
         <div class="content mt-3">
+        
         
         <c:if test="${adminClickHomePage == true }">
 			<%@include file="./admin_page/home.jsp" %>

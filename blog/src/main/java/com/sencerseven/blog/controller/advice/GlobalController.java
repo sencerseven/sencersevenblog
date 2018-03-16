@@ -1,5 +1,7 @@
 package com.sencerseven.blog.controller.advice;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,26 +15,22 @@ import com.sencerseven.blogbackend.dao.CategoryDAO;
 import com.sencerseven.blogbackend.dao.PostsDAO;
 import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.dto.Posts;
+import com.sencerseven.blogbackend.service.CategoryService;
 import com.sencerseven.blogbackend.service.PostsService;
 
 @ControllerAdvice
 public class GlobalController {
 
-	@Autowired
-	CategoryDAO categoryDAO;
-	
-	@Autowired
-	PostsService postsService;
 	
 //	@ModelAttribute(name="allCategories")
 //	public List<Category> getAllCategories(){
-//		return categoryDAO.allCategory();
+//		return categoryService.allCategory();
 //	}
-	
-	@ModelAttribute(name="getSidebarPosts")
-	public List<Posts> getSidebarPosts() {
-		return postsService.getLimitLastPosts(3, 0);
-	}
+//	
+//	@ModelAttribute(name="getSidebarPosts")
+//	public List<Posts> getSidebarPosts() {
+//		return postsService.getLimitLastPosts(3, 0);
+//	}
 	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ModelAndView handlerNoFoundException() {
@@ -44,10 +42,17 @@ public class GlobalController {
 	}
 	
 	@ExceptionHandler(Exception.class)
-	public ModelAndView productNotFoundException() {
+	public ModelAndView productNotFoundException(Exception e) {
 		ModelAndView mv = new ModelAndView("error");
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		
+		e.printStackTrace(pw);
+		
+		
+		
 		mv.addObject("title", "Page is Not Found!");
-		mv.addObject("message", "This Posts not available 2 ");
+		mv.addObject("message", sw.toString());
 		return mv;
 		
 	}

@@ -13,8 +13,7 @@ public interface CategoryService {
 	
 	public boolean saveOrUpdate(Category category);
 	public List<Category> allCategory();
+	List<Category> allCategoryWithLimitedPosts(int limit, int startAt);
+	Category getUrlName(String urlName);
 	
-	
-	
-
 }

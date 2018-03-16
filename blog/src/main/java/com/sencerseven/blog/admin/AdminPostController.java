@@ -1,22 +1,27 @@
-package com.sencerseven.blog.controller.admin;
+package com.sencerseven.blog.admin;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,11 +30,14 @@ import com.sencerseven.blog.validation.FileValidator;
 import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.dto.Images;
 import com.sencerseven.blogbackend.dto.Posts;
+import com.sencerseven.blogbackend.dto.User;
 import com.sencerseven.blogbackend.service.CategoryService;
 import com.sencerseven.blogbackend.service.ImagesService;
 import com.sencerseven.blogbackend.service.PostsService;
+import com.sencerseven.blogbackend.service.UserService;
 
 @Controller
+@SessionAttributes("User")
 @RequestMapping(value= {"/admin/posts"})
 public class AdminPostController {
 	
@@ -42,12 +50,13 @@ public class AdminPostController {
 	@Autowired
 	ImagesService imagesService;
 	
-	
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping
-	public ModelAndView adminPostsPage() {
+	public ModelAndView adminPostsPage(@ModelAttribute("adminModel")User tempUser) {
 		ModelAndView mv = new ModelAndView("admin");
-		
+		System.out.println("postPage--->" + tempUser);
 		mv.addObject("title", "Post Page");
 		mv.addObject("adminClickPostsPage", true);
 		
@@ -77,6 +86,7 @@ public class AdminPostController {
 		
 		post.setFiles(multipartFiles);
 		
+		mv.addObject("user", userService.getUser(1));
 		mv.addObject("multipartFiles", multipartFiles);
 		mv.addObject("categories", category);
 		mv.addObject("post", post);
@@ -86,10 +96,8 @@ public class AdminPostController {
 	}
 	
 	@PostMapping(value = {"/add"})
-	public String adminPostSubmission(@Valid @ModelAttribute("post")Posts post,BindingResult result,Model model,HttpServletRequest request) {
-		
+	public String adminPostSubmission(@SessionAttribute("User")User tempUser,@Valid @ModelAttribute("post")Posts post,BindingResult result,Model model,HttpServletRequest request) {
 			new FileValidator().validate(post, result);
-			
 			if(result.hasErrors()) {
 				MultipartFile multipartFile = null;
 				List<MultipartFile> multipartFiles = new ArrayList<MultipartFile>();
@@ -111,12 +119,14 @@ public class AdminPostController {
 			
 
 			post.setCategory( categoryService.getCategory(post.getCategoryId()));
-			
 			if(post.getId() == 0)
 				post.setCreated_date(new Date());
 			else
 				post.setCreated_date(postsService.getPosts(post.getId()).getCreated_date());
 			
+			
+			
+			post.setUser(tempUser);
 			postsService.saveOrUpdate(post);
 	
 			List<String> tempString = FileUploadUtility.multiFileUpload(request, post.getFiles());

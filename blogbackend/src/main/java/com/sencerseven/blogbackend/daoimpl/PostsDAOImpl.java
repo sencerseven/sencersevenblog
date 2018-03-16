@@ -41,7 +41,12 @@ public class PostsDAOImpl implements PostsDAO {
 
 	@Override
 	public boolean updatePosts(Posts posts) {
-		// TODO Auto-generated method stub
+		try {
+			sessionFactory.getCurrentSession().update(posts);
+			return true;
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 		return false;
 	}
 
