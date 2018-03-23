@@ -52,6 +52,7 @@
 			<version>${springsecurity.version}</version>
 		</dependency>
 		
+	<!-- Jackson -->
 	
 	<!-- JSTL -->
 	<dependency>
