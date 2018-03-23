@@ -33,6 +33,17 @@
 			<form:errors path="category" ></form:errors>
 		</div>
 	</div>
+	<div class="form-group">
+		
+		<div class="col-md-8">
+		<label class="control-label col-md-4">Slider Shown ?</label>
+				<label class="switch switch-text switch-info switch-pill">
+					<form:checkbox path="sliderStatus" class="switch-input" value="${(post.sliderStatus)}"/>
+						<span data-on="On" data-off="Off" class="switch-label"></span> 
+						<span class="switch-handle"></span>
+				</label>	
+		</div>
+	</div>
 	
 	
 	<div class="form-group">

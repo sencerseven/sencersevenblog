@@ -53,4 +53,34 @@ public class FileUploadUtility {
 		
 		
 	}
+	
+	public static String multiFileSingleUpload(HttpServletRequest request,MultipartFile file) {
+		
+		REAL_PATH = request.getSession().getServletContext().getRealPath(PATH);
+		
+		if(!new File(ABS_PATH).exists())
+			new File(ABS_PATH).mkdir();
+		
+		if(!new File(REAL_PATH).exists())
+			new File(REAL_PATH).mkdir();
+		
+		List<String> fileNames = new ArrayList<String>();
+		
+			try {
+				String fileExtName = FilenameUtils.getExtension(file.getOriginalFilename());
+				String fileNameWithOutExt = FilenameUtils.removeExtension(file.getOriginalFilename());
+				String saltName = BlogFunctions.toPrettyURL(fileNameWithOutExt);
+				String newName = saltName + "." + fileExtName;
+				
+				FileCopyUtils.copy(file.getBytes(),new File(REAL_PATH + newName ));
+				FileCopyUtils.copy(file.getBytes(),new File(ABS_PATH + newName));
+				return newName; 
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			return null;		
+		
+	}
 }

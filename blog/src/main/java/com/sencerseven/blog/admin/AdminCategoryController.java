@@ -44,7 +44,6 @@ public class AdminCategoryController {
 	@PostMapping("/{id}/activation")
 	@ResponseBody
 	public String categoryActivation(@PathVariable("id")int id) {
-		String proccess = "Your category is ";
 		Category category = categoryService.getCategory(id);
 		category.setActive(!category.isActive());
 		categoryService.updateCategory(category);

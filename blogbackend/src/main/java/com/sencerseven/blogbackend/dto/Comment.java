@@ -31,15 +31,24 @@ public class Comment implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="posts_id",nullable = false)
 	private Posts posts;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id",nullable=false)
+	private User user;
 
 	public Comment() {
 	
 	}
 	
-	public Comment(String comment, Posts posts) {
+	
+
+	public Comment(String comment, Posts posts, User user) {
 		this.comment = comment;
 		this.posts = posts;
+		this.user = user;
 	}
+
+
 
 	public int getId() {
 		return Id;
@@ -64,6 +73,14 @@ public class Comment implements Serializable{
 	public void setPosts(Posts posts) {
 		this.posts = posts;
 		posts.getComment().add(this);
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

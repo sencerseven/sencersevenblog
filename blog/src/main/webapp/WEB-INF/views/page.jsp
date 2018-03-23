@@ -1,6 +1,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -16,6 +17,9 @@
 <meta charset="UTF-8">
 <meta name="description" content="Just another WordPress site" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 
 <style type="text/css">
 img.wp-smiley, img.emoji {
@@ -209,6 +213,10 @@ img.wp-smiley, img.emoji {
 }
 </style>
 </noscript>
+<script type="text/javascript">
+	window.contextRoot='${pageContext.request.contextPath}';
+</script>
+
 </head>
 <body
 	class="home page-template page-template-visual-temlpate page-template-visual-temlpate-php page page-id-75 wpb-js-composer js-comp-ver-5.2.1 vc_responsive">
@@ -234,6 +242,12 @@ img.wp-smiley, img.emoji {
 				</c:if>
 				<c:if test="${userClickCategoryDetail == true }">
 					<%@include file="category-detail.jsp" %>
+				</c:if>
+				<c:if test="${userClickLoginPage == true }">
+					<%@include file="login.jsp" %>
+				</c:if>
+				<c:if test="${userClickProfileDetails == true }">
+					<%@include file="profile-detail.jsp" %>
 				</c:if>
 				<!-- #post-## -->
 			</div>
@@ -263,8 +277,9 @@ img.wp-smiley, img.emoji {
 	<script type='text/javascript' src='${js}/lib/owl.carousel.min.js'></script>
 	<script type='text/javascript' src='${js}/lib/theme.min.js'></script>
 	<script type='text/javascript' src='${js}/img-demo.js'></script>
-
-
+	<script type='text/javascript' src='${js}/myApp.js'></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
 	<script type='text/javascript'
 		src='${js}/js_composer_front.min.js'></script>
 

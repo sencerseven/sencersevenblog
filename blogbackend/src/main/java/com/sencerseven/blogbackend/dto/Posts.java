@@ -1,9 +1,13 @@
 package com.sencerseven.blogbackend.dto;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +23,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -50,9 +56,15 @@ public class Posts implements Serializable{
 	@Transient
 	private List<MultipartFile> files;
 	
+	@Transient
+	private String dateString;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id",nullable=false)
 	private User user;
+	
+	@Column(name="slider_status" , columnDefinition="boolean default true" ,nullable = false)
+	private boolean sliderStatus; 
 	
 	
 
@@ -81,6 +93,7 @@ public class Posts implements Serializable{
 	@OneToMany(mappedBy="posts", cascade= {CascadeType.ALL})
 	private List<Images> images;
 	
+	@DateTimeFormat(pattern="dd MMM yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date created_date;
 	
@@ -141,6 +154,7 @@ public class Posts implements Serializable{
 	}
 
 	public Date getCreated_date() {
+	
 		return created_date;
 	}
 
@@ -182,6 +196,25 @@ public class Posts implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	
+
+	
+
+	public boolean isSliderStatus() {
+		return sliderStatus;
+	}
+
+	public void setSliderStatus(boolean sliderStatus) {
+		this.sliderStatus = sliderStatus;
+	}
+
+	public String getDateString() {
+		 DateFormat targetFormat = new SimpleDateFormat("dd MMM yyyy",Locale.forLanguageTag("tr-TR"));
+		 String formattedDate = targetFormat.format(created_date);
+	
+		return formattedDate;
 	}
 
 	@Override

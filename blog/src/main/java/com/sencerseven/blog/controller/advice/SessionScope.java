@@ -18,8 +18,8 @@ import com.sencerseven.blogbackend.dto.User;
 import com.sencerseven.blogbackend.service.UserService;
 
 @SessionAttributes("User")
-@ControllerAdvice(basePackages="com.sencerseven.blog.admin")
-public class AdminAdvice {
+@ControllerAdvice(basePackages= {"com.sencerseven.blog.admin","com.sencerseven.blog.controller"})
+public class SessionScope {
 
 	
 	@Autowired

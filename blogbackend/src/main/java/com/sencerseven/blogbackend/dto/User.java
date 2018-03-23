@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="User")
@@ -46,17 +49,21 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
 	private List<Posts> post;
 
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
+	private List<Comment> comment;
 	
+	
+	@Transient
+	private MultipartFile multipartFile;
+	
+	@Column(name="imageURL")
+	private String imageURL;
 	
 	public User() {
 	}
 	
-
-
-
-	public User(int id, String firstName, String lastName, String email, String password, String role,
-			String contactNumber, boolean enabled, List<Posts> post) {
-		this.id = id;
+	public User(String firstName, String lastName, String email, String password, String role, String contactNumber,
+			boolean enabled, List<Posts> post, List<Comment> comment) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -65,7 +72,12 @@ public class User implements Serializable {
 		this.contactNumber = contactNumber;
 		this.enabled = enabled;
 		this.post = post;
+		this.comment = comment;
 	}
+
+
+
+
 
 
 
@@ -143,6 +155,31 @@ public class User implements Serializable {
 		this.post = post;
 	}
 
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+	
+	
+	public MultipartFile getMultipartFile() {
+		return multipartFile;
+	}
+
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
 
 	@Override
 	public String toString() {

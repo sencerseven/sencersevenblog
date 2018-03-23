@@ -55,7 +55,7 @@
 	                        <td>${category.categoryName}</td>
 	                        <td>${fn:substring(category.categoryDescription,0,30)}</td>
 	                        <td>
-								<label class="switch switch-text switch-info switch-pill">
+								<label class="switch switch-text switch-info switch-pill switch-category">
 									<input type="checkbox" value="${category.id}" class="switch-input" ${category.active ? 'checked="false"' : '' }> 
 										<span data-on="On" data-off="Off" class="switch-label"></span> 
 										<span class="switch-handle"></span>

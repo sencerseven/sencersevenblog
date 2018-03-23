@@ -11,7 +11,7 @@ $(function(){
 		
 	}
 	
-	$('.switch input[type="checkbox"]').on('change',function(){
+	$('.switch-category input[type="checkbox"]').on('change',function(){
 		
 		
 		var checkbox = $(this);
@@ -19,6 +19,24 @@ $(function(){
 		var value = checkbox.prop('value');
 		
 		var activationUrl = window.contextRoot +'/category/'+value+'/activation';
+
+		$.post(activationUrl,function(data){
+
+			alert(data);
+			
+			
+		});
+		
+	});
+	
+$('.switch-post input[type="checkbox"]').on('change',function(){
+		
+		
+		var checkbox = $(this);
+		var status = checkbox.prop('checked');
+		var value = checkbox.prop('value');
+		
+		var activationUrl = window.contextRoot +'/posts/'+value+'/activation';
 
 		$.post(activationUrl,function(data){
 

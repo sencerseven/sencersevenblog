@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
-.s7upf_1520526403{
-	background-color:red;
+.s7upf_1520526403 {
+	background-color: red;
 }
 </style>
 
@@ -28,14 +28,14 @@
 							<div class="main-post-content margin-b30">
 								<div class="post-item border-bottom">
 									<div class="post-info">
-										<h1 class="title18 margin-b20">${post.title}&#8211; News
-											and Business Blog</h1>
+										<h1 class="title18 margin-b20">${post.title}</h1>
 										<ul class="post-list-info">
-											<li><i class="ion-android-calendar"></i> <span>${post.created_date}</span></li>
+											<li><i class="ion-android-calendar"></i> <span>${post.dateString }</span></li>
 											<li><a href="index.html#comments"> <i
-													class="ion-chatbox-working"></i> <span>1</span>
+													class="ion-chatbox-working"></i> <span>${fn:length(post.comment )}</span>
 											</a></li>
 											<li><i class="ion-ios-eye"></i> <span>${post.view}</span></li>
+											<li><i class="ion-ios-heart color-red" ></i> <span>0</span></li>
 										</ul>
 									</div>
 								</div>
@@ -80,8 +80,7 @@
 							<div class="article-avatar">
 								<a href="../../../../author/7uptheme/index.html"
 									class="hvr-rotate"><img alt=''
-									src='http://0.gravatar.com/avatar/327a23545f81f97b0677092a0e570040?s=100&d=mm&r=g'
-									srcset='http://0.gravatar.com/avatar/327a23545f81f97b0677092a0e570040?s=200&amp;d=mm&amp;r=g 2x'
+									src='${contextRoot}/resources/images/uploads/${post.user.imageURL}'
 									class='avatar avatar-100 photo' height='100' width='100' /></a>
 							</div>
 							<div class="article-info">
@@ -106,26 +105,27 @@
 						<div class="control-text margin-b30 border-bottom border-top">
 							<div class="row">
 								<div class="col-xs-6">
-									<div class="text-left">
-										<i class="ion-chevron-left"></i>
-										<h3>
-											<a
-												href="../diana-says-vlogging-saved-my-life-proin-dictum-2/index.html"
-												rel="prev">Diana says: Vlogging saved my life Proin
-												dictum</a>
-										</h3>
-									</div>
+									<c:if test="${not empty getBackPost[0]}">
+										<div class="text-left">
+											<i class="ion-chevron-left"></i>
+											<h3>
+												<a href="${contextRoot}/post/${getBackPost[0].postUrl }"
+													rel="prev">${getBackPost[0].title }</a>
+											</h3>
+										</div>
+									</c:if>
 								</div>
 								<div class="col-xs-6">
-									<div class="text-right">
-										<h3>
-											<a
-												href="../../10/why-its-the-year-to-wear-what-you-like-not/index.html"
-												rel="next">Why it&#8217;s the year to wear what you like
-												not</a>
-										</h3>
-										<i class="ion-chevron-right"></i>
-									</div>
+									<c:if test="${not empty getNextPost[0]}">
+										<div class="text-right">
+											<h3>
+												<a
+													href="${contextRoot}/post/${getNextPost[0].postUrl }"
+													rel="next">${getNextPost[0].title }</a>
+											</h3>
+											<i class="ion-chevron-right"></i>
+										</div>
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -217,42 +217,41 @@
 						<div id="comment" class="comments-area comments">
 
 							<div class="post-comment">
-								<h2 class="title18">
-									One thought on &ldquo;<span>Magalla Magazine &#8211;
-										News and Business Blog</span>&rdquo;
-								</h2>
+								<h2 class="title18">${post.title}-
+									Yorum(${fn:length(post.comment) })</h2>
 								<ol class="comments-list">
-									<li
-										class="comment byuser comment-author-7uptheme bypostauthor even thread-even depth-1">
-										<div id="comment-3" class="comment-body">
-											<div class="item-comment">
-												<div class="author-avatar">
-													<a href="../../../../author/7uptheme/index.html"><img
-														alt=''
-														src='http://0.gravatar.com/avatar/327a23545f81f97b0677092a0e570040?s=100&d=mm&r=g'
-														srcset='http://0.gravatar.com/avatar/327a23545f81f97b0677092a0e570040?s=200&amp;d=mm&amp;r=g 2x'
-														class='avatar avatar-100 photo' height='100' width='100' /></a>
-												</div>
-												<div class="comment-info">
-													<h3>
-														<b>7uptheme</b>
-													</h3>
-													<div class="desc">
-														<p>Your comment *Typi non habent claritatem insitam;
-															est usus legentis in iis qui facit eorum claritatem.
-															Investigationes monstraverunt lectores legere me lius
-															quod ii legunt saepius</p>
+									<c:forEach items="${post.comment}" var="comment">
+										<li class="comment byuser even thread-even depth-1">
+
+
+											<div id="comment-3" class="comment-body">
+												<div class="item-comment">
+													<div class="author-avatar">
+														<a href="../../../../author/7uptheme/index.html"><img
+															alt=''
+															src='${contextRoot}/resources/images/uploads/${comment.user.imageURL}'
+															class='avatar avatar-100 photo' height='100' width='100' /></a>
 													</div>
-													<span><i class="ion-android-calendar"></i>09 Aug
-														2017</span> <span><a rel='nofollow'
-														class='comment-reply-link'
-														href='index-replytocom=3.html#respond'
-														onclick='return addComment.moveForm( "comment-3", "3", "respond", "112" )'
-														aria-label='Reply to 7uptheme'>Reply</a></span>
+													<div class="comment-info">
+														<h3>
+															<b>${comment.user.firstName }</b>
+														</h3>
+														<div class="desc">
+															<p>${comment.comment }</p>
+														</div>
+														<span><i class="ion-android-calendar"></i> </span>
+														<security:authorize access="isAuthenticated()">
+															<span><a rel='nofollow' class='comment-reply-link'
+																href='index-replytocom=3.html#respond'
+																onclick='return addComment.moveForm( "comment-3", "3", "respond", "112" )'
+																aria-label='Reply to 7uptheme'>Reply</a></span>
+														</security:authorize>
+													</div>
 												</div>
 											</div>
-										</div>
-									</li>
+										</li>
+
+									</c:forEach>
 									<!-- #comment-## -->
 								</ol>
 
@@ -260,35 +259,27 @@
 
 							<!-- If comments are closed and there are comments, let's leave a little note, shall we? -->
 						</div>
-						<div id="respond" class="comment-respond">
-							<h2 class="title18">
-								Leave a reply <small><a rel="nofollow"
-									id="cancel-comment-reply-link" href="index.html#respond"
-									style="display: none;">Cancel reply</a></small>
-							</h2>
-							<form
-								action="http://7uptheme.com/wordpress/worldnews/wp-comments-post.php"
-								method="post" id="commentform"
-								class="form-leave-comment form-contact" novalidate>
+						<security:authorize access="isAuthenticated()">
+							<div id="respond" class="comment-respond">
 
+								<form id="commentForm" class="form-leave-comment form-contact">
+								<input type="text" hidden id="commentImage"
+										value="${contextRoot}/resources/images/uploads/${User.imageURL }" />
+									<input type="text" hidden name="username" id="commentUser"
+										value="${User.firstName }" />
+									<textarea class="form-control" rows="5" name="comment"
+										id="commentText" aria-required="true"
+										placeholder="Yorum Bırak"></textarea>
+									<p class="form-submit">
+										<button name="submit" type="button" id="commentButton"
+											class="shop-button" value=>Gönder</button>
+										<input type='hidden' name='comment_post_ID' value='${post.id}'
+											id='commentPostID' />
 
-								<p>Your email address will not be published. Required fields
-									are marked *</p>
-								<input id="author" name="author" type="text"
-									placeholder="Name *" value="" aria-required="true" /><input
-									id="email" name="email" type="text" placeholder="Email *"
-									value="" aria-required="true" />
-								<textarea class="form-control" rows="5" name="comment"
-									aria-required="true" placeholder="Your comment *"></textarea>
-								<p class="form-submit">
-									<input name="submit" type="submit" id="submit"
-										class="shop-button" value="Post a comment" /> <input
-										type='hidden' name='comment_post_ID' value='112'
-										id='comment_post_ID' /> <input type='hidden'
-										name='comment_parent' id='comment_parent' value='0' />
-								</p>
-							</form>
-						</div>
+									</p>
+								</form>
+							</div>
+						</security:authorize>
 						<!-- #respond -->
 					</div>
 					<div class="col-md-4  col-sm-12 sidebar">
@@ -301,8 +292,7 @@
 									<c:forEach items="${categoryTrendPost}" var="trendPost">
 										<div class="post-item">
 											<div class="post-thumb">
-												<a
-													href="${contextRoot }/post/${trendPost.postUrl}"><img
+												<a href="${contextRoot }/post/${trendPost.postUrl}"><img
 													width="120" height="80"
 													src="${contextRoot}/resources/images/uploads/${trendPost.images[0].imageName}"
 													class="attachment-120x80 size-120x80 wp-post-image" alt=""
@@ -311,11 +301,12 @@
 											<div class="post-info">
 												<div class="list-cat-btn">
 													<ul>
-														<li><a href="${contextRoot}/category/${trendPost.category.categoryUrl }" class="s7upf_1520526403">${trendPost.category.categoryName }</a></li>
+														<li><a
+															href="${contextRoot}/category/${trendPost.category.categoryUrl }"
+															class="s7upf_1520526403">${trendPost.category.categoryName }</a></li>
 													</ul>
 												</div>
-												<a
-													href="${contextRoot }/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
+												<a href="${contextRoot }/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
 												<ul class="post-list-info">
 													<li><i class="ion-android-calendar"></i> <span>${trendPost.created_date}</span></li>
 													<li><a href="index.html#"> <i
@@ -331,8 +322,7 @@
 									<c:forEach items="${categoryTrendPost}" var="trendPost">
 										<div class="post-item">
 											<div class="post-thumb">
-												<a
-													href="${contextRoot }/post/${trendPost.postUrl}"><img
+												<a href="${contextRoot }/post/${trendPost.postUrl}"><img
 													width="120" height="80"
 													src="${contextRoot}/resources/images/uploads/${trendPost.images[0].imageName}"
 													class="attachment-120x80 size-120x80 wp-post-image" alt=""
@@ -341,11 +331,12 @@
 											<div class="post-info">
 												<div class="list-cat-btn">
 													<ul>
-														<li><a href="${contextRoot}/category/${trendPost.category.categoryUrl }" class="s7upf_1520526403">${trendPost.category.categoryName }</a></li>
+														<li><a
+															href="${contextRoot}/category/${trendPost.category.categoryUrl }"
+															class="s7upf_1520526403">${trendPost.category.categoryName }</a></li>
 													</ul>
 												</div>
-												<a
-													href="${contextRoot }/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
+												<a href="${contextRoot }/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
 												<ul class="post-list-info">
 													<li><i class="ion-android-calendar"></i> <span>${trendPost.created_date}</span></li>
 													<li><a href="index.html#"> <i
@@ -376,16 +367,13 @@
 											<div class="type-icon">
 												<i class="ion-ios-videocam"></i>
 											</div>
-											<a
-												href="${contextRoot }/post/${getRecentPost[0].postUrl}"><img
+											<a href="${contextRoot }/post/${getRecentPost[0].postUrl}"><img
 												width="900" height="600"
 												src="${contextRoot }/resources/images/uploads/${getRecentPost[0].images[0].imageName}"
-												class="attachment-full size-full wp-post-image" alt=""
-												 /></a>
+												class="attachment-full size-full wp-post-image" alt="" /></a>
 										</div>
 										<div class="post-info">
-											<a
-												href="${contextRoot }/post/${getRecentPost[0].postUrl}"><b>${getRecentPost[0].title }</b></a>
+											<a href="${contextRoot }/post/${getRecentPost[0].postUrl}"><b>${getRecentPost[0].title }</b></a>
 											<ul class="post-list-info">
 												<li><i class="ion-android-calendar"></i> <span>${getRecentPost[0].created_date }</span></li>
 												<li><a
@@ -406,16 +394,13 @@
 
 												<div class="post-item">
 													<div class="post-thumb">
-														<a
-															href="${contextRoot }/post/${recentPost.postUrl}"><img
+														<a href="${contextRoot }/post/${recentPost.postUrl}"><img
 															width="50" height="50"
 															src="${contextRoot}/resources/images/uploads/${recentPost.images[0].imageName }"
-															class="attachment-50x50 size-50x50 wp-post-image" alt=""
-															/></a>
+															class="attachment-50x50 size-50x50 wp-post-image" alt="" /></a>
 													</div>
 													<div class="post-info">
-														<a
-															href="${contextRoot }/post/${recentPost.postUrl}"><b>${recentPost.title }</b></a>
+														<a href="${contextRoot }/post/${recentPost.postUrl}"><b>${recentPost.title }</b></a>
 														<ul class="post-list-info">
 															<li><i class="ion-android-calendar"></i> <span>08
 																	Sep 2017</span></li>

@@ -45,7 +45,7 @@
                        	<th>Name</th>
                         	<th>Description</th>
                         	<th>Created Date</th>
-                        <th>Status</th>
+                        <th>Slider Status</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -57,6 +57,11 @@
 	                        <td>${fn:substring(post.content,0,30)}</td>
 	                        <td>${post.created_date}</td>
 	                        <td>
+								<label class="switch switch-text switch-info switch-pill switch-post">
+									<input type="checkbox" value="${post.id}" class="switch-input" ${post.sliderStatus ? 'checked="false"' : '' }> 
+										<span data-on="On" data-off="Off" class="switch-label"></span> 
+										<span class="switch-handle"></span>
+								</label>		
 							</td>
 							<td>
 								<a href="${contextRoot}/posts/${post.id}/edit"  class="btn btn-warning btn-sm edit"><i class="fa fa-eye" alt="edit"></i></a>

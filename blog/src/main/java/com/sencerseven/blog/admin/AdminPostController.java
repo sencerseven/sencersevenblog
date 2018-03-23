@@ -69,6 +69,20 @@ public class AdminPostController {
 		
 	}
 	
+	@PostMapping("/{id}/activation")
+	@ResponseBody
+	public String categoryActivation(@PathVariable("id")int id) {
+		Posts post = postsService.getPosts(id);
+		post.setSliderStatus(!post.isSliderStatus());
+		postsService.updatePosts(post);
+		
+		
+		return (!post.isSliderStatus()) ? "Post has been deactivated which have got id" +  post.getId() :
+										"Post has been activated which have got id" +  post.getId();
+		
+	}
+	
+	
 	@GetMapping(value={"/add"})
 	public ModelAndView adminPostAddPage() {
 		ModelAndView mv = new ModelAndView("admin");

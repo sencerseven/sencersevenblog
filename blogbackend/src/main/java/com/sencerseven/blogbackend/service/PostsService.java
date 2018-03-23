@@ -25,6 +25,9 @@ public interface PostsService {
 	List<Posts> getRecentPost(int userId, int startAt, int limit);
 	List<Posts> getLimitLastPostsByCategory(Category category, int limit, int startAt);
 	Long countPost(Category category);
+	List<Posts> getNextPost(Posts post, int startAt, int limit);
+	List<Posts> getBackPost(Posts post, int startAt, int limit);
+	List<Posts> getSliderPost(int startAt, int limit);
 	
 	
 }

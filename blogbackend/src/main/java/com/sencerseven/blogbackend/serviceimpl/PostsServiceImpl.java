@@ -243,6 +243,67 @@ public class PostsServiceImpl implements PostsService{
 		
 		return null;
 	}
+	@Override
+	@Transactional
+	public List<Posts> getBackPost(Posts post,int startAt, int limit) {
+		
+		try {
+			String queryString = "FROM Posts p WHERE p.id < :currentId AND p.category.id = :categoryId ORDER BY p.id DESC";
+			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString,Posts.class);
+			query.setParameter("currentId", post.getId());
+			query.setParameter("categoryId", post.getCategory().getId());
+			query.setFirstResult(startAt);
+			query.setMaxResults(limit);
+			List<Posts> postList = query.getResultList();
+			return postList;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return null;
+	}
+	@Override
+	@Transactional
+	public List<Posts> getNextPost(Posts post,int startAt, int limit) {
+		
+		try {
+			String queryString = "FROM Posts p WHERE p.id > :currentId AND p.category.id = :categoryId ORDER BY p.id ASC";
+			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(queryString,Posts.class);
+			query.setParameter("currentId", post.getId());
+			query.setParameter("categoryId", post.getCategory().getId());
+			query.setFirstResult(startAt);
+			query.setMaxResults(limit);
+			List<Posts> postList = query.getResultList();
+			return postList;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return null;
+	}
 	
 
+	@Override
+	@Transactional
+	public List<Posts> getSliderPost(int startAt,int limit){
+		try {
+			String stringQuery = "From Posts p WHERE p.sliderStatus = true ORDER BY p.id DESC ";
+			Query<Posts> query = sessionFactory.getCurrentSession().createQuery(stringQuery,Posts.class);
+			query.setFirstResult(startAt);
+			query.setMaxResults(limit);
+			List<Posts> posts =  query.getResultList();
+			
+			for(Posts post : posts) {
+				Hibernate.initialize(post.getImages());
+			}
+			return posts;	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
+	}
+	
 }

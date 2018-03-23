@@ -92,18 +92,17 @@
 			<div class="wpb_wrapper">
 				<h3
 					style="text-align: left; font-family: Oswald; font-weight: 400; font-style: normal"
-					class="vc_custom_heading title14 vc_custom_1501123565204">Categories</h3>
+					class="vc_custom_heading title14 vc_custom_1501123565204">Kategoriler</h3>
 				<div class="vc_row wpb_row vc_inner vc_custom_1504769820403">
+				
+				
 					<div class="wpb_column column_container col-sm-6">
 						<div class="vc_column-inner ">
 							<div class="wpb_wrapper">
 								<ul class="list-none footer-list ">
-									<li><a href="index.html#" target="_parent">Business</a></li>
-									<li><a href="index.html#" target="_parent">Mobile</a></li>
-									<li><a href="index.html#" target="_parent">Fashion</a></li>
-									<li><a href="index.html#" target="_parent">Travel
-											&amp; Sport</a></li>
-									<li><a href="index.html#" target="_parent">IT-Tech</a></li>
+								<c:forEach items="${allCategoryAdvice}" var="category">
+								<li><a href="index.html#" target="_parent">${category.categoryName }</a></li>
+								</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -119,6 +118,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 				<div class="follow vc_custom_1504769844452">
 					<h3 class="title14">Follow us:</h3>

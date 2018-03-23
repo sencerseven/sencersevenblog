@@ -11,116 +11,41 @@
 					<div class="wpb_wrapper">
 						<div class="wrap-item top-slider1 ion-big" data-pagination="true"
 							data-paginumber="true" data-navigation="true"
-							data-itemscustom="[[0,1],[992,1]]">
-							<div class="post-item">
-								<div class="post-thumb">
-									<div class="list-cat-btn">
-										<ul class="post-categories">
-											<li><a href="category/fashion/index.html"
-												class="s7upf_1520526324">Fashion</a></li>
-											<li><a href="category/it-tech/index.html"
-												class="s7upf_1520526325">IT-Tech</a></li>
-											<li><a href="category/travel/index.html"
-												class="s7upf_1520526326">Travel</a></li>
+							data-itemscustom="[[0,1],[1250,1]]">
+							<c:forEach items="${sliderPosts}" var="sliderPost">
+								<div class="post-item">
+									<div class="post-thumb">
+										<div class="list-cat-btn">
+											<ul class="post-categories">
+												<li><a href="${contextRoot }/category/${sliderPost.category.categoryUrl}"
+													class="s7upf_1520526324">${sliderPost.category.categoryName }</a></li>
+												
+											</ul>
+										</div>
+										<div class="type-icon">
+											<i class="ion-image"></i>
+										</div>
+										<a
+											href="2017/08/10/new-collection-style-for-woman-2017/index.html">
+											<img width="770" height="513"
+											src="${contextRoot }/resources/images/uploads/${sliderPost.images[0].imageName}"
+											 />
+										</a>
+									</div>
+									<div class="slide-post-info">
+										<a
+											href="2017/08/10/new-collection-style-for-woman-2017/index.html"><b
+											data-hover="New collection Style for woman 2017">${sliderPost.title }</b></a>
+										<ul class="post-list-info">
+											<li><i class="ion-android-calendar"></i> <span>${sliderPost.dateString }</span></li>
+											<li><a
+												href="2017/08/10/new-collection-style-for-woman-2017/index.html#comments">
+													<i class="ion-chatbox-working"></i> <span>1</span>
+											</a></li>
 										</ul>
 									</div>
-									<div class="type-icon">
-										<i class="ion-image"></i>
-									</div>
-									<a
-										href="2017/08/10/new-collection-style-for-woman-2017/index.html">
-										<img width="770" height="513"
-										src="wp-content/uploads/2017/08/worldnews_fashion-08-770x513.jpg"
-										class="attachment-770x513 size-770x513 wp-post-image" alt=""
-										srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-770x513.jpg 770w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-510x340.jpg 510w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-200x133.jpg 200w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-440x293.jpg 440w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-170x113.jpg 170w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-08.jpg 900w"
-										sizes="(max-width: 770px) 100vw, 770px" />
-									</a>
 								</div>
-								<div class="slide-post-info">
-									<a
-										href="2017/08/10/new-collection-style-for-woman-2017/index.html"><b
-										data-hover="New collection Style for woman 2017">New
-											collection Style for woman 2017</b></a>
-									<ul class="post-list-info">
-										<li><i class="ion-android-calendar"></i> <span>10
-												Aug 2017</span></li>
-										<li><a
-											href="2017/08/10/new-collection-style-for-woman-2017/index.html#comments">
-												<i class="ion-chatbox-working"></i> <span>1</span>
-										</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="post-item">
-								<div class="post-thumb">
-									<div class="list-cat-btn">
-										<ul class="post-categories">
-											<li><a href="category/it-tech/index.html"
-												class="s7upf_1520526327">IT-Tech</a></li>
-											<li><a href="category/mobile/index.html"
-												class="s7upf_1520526328">Mobile</a></li>
-										</ul>
-									</div>
-									<div class="type-icon">
-										<i class="ion-image"></i>
-									</div>
-									<a href="2017/08/10/chelsea-3-0-middlesbrough/index.html">
-										<img width="770" height="513"
-										src="wp-content/uploads/2017/08/worldnews_mobile-05-770x513.jpg"
-										class="attachment-770x513 size-770x513 wp-post-image" alt=""
-										srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-770x513.jpg 770w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-510x340.jpg 510w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-170x113.jpg 170w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-440x293.jpg 440w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05-392x262.jpg 392w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_mobile-05.jpg 900w"
-										sizes="(max-width: 770px) 100vw, 770px" />
-									</a>
-								</div>
-								<div class="slide-post-info">
-									<a href="2017/08/10/chelsea-3-0-middlesbrough/index.html"><b
-										data-hover="Chelsea 3-0 Middlesbrough">Chelsea 3-0
-											Middlesbrough</b></a>
-									<ul class="post-list-info">
-										<li><i class="ion-android-calendar"></i> <span>10
-												Aug 2017</span></li>
-										<li><a
-											href="2017/08/10/chelsea-3-0-middlesbrough/index.html#respond">
-												<i class="ion-chatbox-working"></i> <span>0</span>
-										</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="post-item">
-								<div class="post-thumb">
-									<div class="list-cat-btn">
-										<ul class="post-categories">
-											<li><a href="category/travel/index.html"
-												class="s7upf_1520526329">Travel</a></li>
-										</ul>
-									</div>
-									<div class="type-icon">
-										<i class="ion-image"></i>
-									</div>
-									<a
-										href="2017/08/10/samsung-galaxy-s8-review-the-future-of-smartphones-2/index.html">
-										<img width="770" height="513"
-										src="wp-content/uploads/2017/08/worldnews_sport-04-770x513.jpg"
-										class="attachment-770x513 size-770x513 wp-post-image" alt=""
-										srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-770x513.jpg 770w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-570x380.jpg 570w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-510x340.jpg 510w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-440x293.jpg 440w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-370x247.jpg 370w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04-392x262.jpg 392w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_sport-04.jpg 900w"
-										sizes="(max-width: 770px) 100vw, 770px" />
-									</a>
-								</div>
-								<div class="slide-post-info">
-									<a
-										href="2017/08/10/samsung-galaxy-s8-review-the-future-of-smartphones-2/index.html"><b
-										data-hover="Samsung Galaxy S8 review: the future of smartphones">Samsung
-											Galaxy S8 review: the future of smartphones</b></a>
-									<ul class="post-list-info">
-										<li><i class="ion-android-calendar"></i> <span>10
-												Aug 2017</span></li>
-										<li><a
-											href="2017/08/10/samsung-galaxy-s8-review-the-future-of-smartphones-2/index.html#respond">
-												<i class="ion-chatbox-working"></i> <span>0</span>
-										</a></li>
-									</ul>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 						<div class="experts home-title color-border-bottom drop-shadow ">
 							<h2 class="color-title margin-b20">
@@ -204,7 +129,9 @@
 											<div class="post-info">
 												<div class="list-cat-btn">
 													<ul>
-														<li><a href="${contextRoot}/category/${trendPost.category.categoryUrl }" class="s7upf_1520526333">${trendPost.category.categoryName }</a></li>
+														<li><a
+															href="${contextRoot}/category/${trendPost.category.categoryUrl }"
+															class="s7upf_1520526333">${trendPost.category.categoryName }</a></li>
 													</ul>
 												</div>
 												<a href="${contextRoot}/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
@@ -491,7 +418,8 @@
 												<h2
 													style="text-align: left; font-family: Abril Fatface; font-weight: 400; font-style: normal"
 													class="vc_custom_heading color-title">
-													<a href="${contextRoot}/category/${categoryModel.category.categoryUrl}">${categoryModel.category.categoryName}</a>
+													<a
+														href="${contextRoot}/category/${categoryModel.category.categoryUrl}">${categoryModel.category.categoryName}</a>
 												</h2>
 											</div>
 										</div>
@@ -595,18 +523,16 @@
 																	<c:if test="${index.index != 0 }">
 																		<div class="post-item">
 																			<div class="post-thumb">
-																				<a
-																					href="${contextRoot}/post/${post.postUrl}">
-																					<img width="120" height="80" 
+																				<a href="${contextRoot}/post/${post.postUrl}"> <img
+																					width="120" height="80"
 																					src="${contextRoot}/resources/images/uploads/${post.images[0].imageName}"
 																					class="attachment-120x80 size-120x80 wp-post-image"
-																					alt="" sizes="(max-width: 120px) 100vw, 120px" 
-																					style="height:100%;"/>
+																					alt="" sizes="(max-width: 120px) 100vw, 120px"
+																					style="height: 100%;" />
 																				</a>
 																			</div>
 																			<div class="post-info">
-																				<a
-																					href="${contextRoot}/post/${post.postUrl}"><b>${post.title}
+																				<a href="${contextRoot}/post/${post.postUrl}"><b>${post.title}
 																						&#8211; ${categoryModel.category.categoryName}</b></a>
 																				<ul class="post-list-info">
 																					<li><i class="ion-android-calendar"></i> <span>

@@ -4,11 +4,16 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.ParseConversionEvent;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +54,8 @@ public class PageController {
 
 		List<Category> categories = categoryService.allCategoryWithLimitedPosts(5, 0);
 		
+		List<Posts> posts = postService.getSliderPost(0, 5);
+		
 		
 		for(Category tempCategory : categories) {
 			CategoryModel categoryModel = new CategoryModel();
@@ -62,6 +69,8 @@ public class PageController {
 		if(categories != null) {
 			mv.addObject("categoryModelList", categoryModelList);
 		}
+		mv.addObject("sliderPosts", posts);
+		
 		String pass = bcryptPasswordEncoder.encode("123");
 		System.out.println(pass);
 		return mv;
@@ -74,6 +83,26 @@ public class PageController {
 		mv.addObject("userClickContactPage",true);
 
 		return mv;
+	}
+	
+	@RequestMapping(value = {"/login"})
+	public ModelAndView loginPage(@RequestParam(name="error",required = false)String error,
+			@RequestParam(name="logout",required = false)String logout) {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "login");
+		mv.addObject("userClickLoginPage",true);
+
+		return mv;
+	}
+	
+	@RequestMapping("/perform-logout")
+	public String logout(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(authentication != null)
+			new SecurityContextLogoutHandler().logout(httpServletRequest, httpServletResponse, authentication);
+		
+		return "redirect:/";
 	}
 	
 
