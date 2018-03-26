@@ -14,7 +14,7 @@ import com.sencerseven.blogbackend.service.CategoryService;
 import com.sencerseven.blogbackend.service.ImagesService;
 
 @RestController
-@RequestMapping("/api/v1/blog")
+@RequestMapping("/api")
 public class BlogResource {
 
 	@Autowired
