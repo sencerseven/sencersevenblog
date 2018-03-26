@@ -68,7 +68,7 @@ public class OAuthServerConfigration {
 			clients.inMemory()
 			.withClient("crmClient1")
 			.secret("$2a$10$5OkeCLKNs/BkdO0qcYRri.MdIcKhFvElAllhPgLfRQqG7wkEiPmq2")
-			.authorizedGrantTypes("password","refresh_token")
+			.authorizedGrantTypes("client_credentials","password","refresh_token")
 			.authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
 			  .scopes("read", "write", "trust")
 	          //.accessTokenValiditySeconds(ONE_DAY)
@@ -78,14 +78,15 @@ public class OAuthServerConfigration {
 			// @formatter:on
 		}
 
-		@Bean
-		@Primary
-		public DefaultTokenServices tokenServices() {
-			DefaultTokenServices tokenServices = new DefaultTokenServices();
-			tokenServices.setSupportRefreshToken(true);
-			tokenServices.setTokenStore(tokenStore);
-			return tokenServices;
-		}
+		
+		
+		
+		@Override
+		public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+			security.allowFormAuthenticationForClients();
+			}
+
+		
        
         
     }
