@@ -55,16 +55,16 @@ public class OAuthServerConfigration {
 		@Override
 		public void configure(AuthorizationServerEndpointsConfigurer endpoints)
 				throws Exception {
-			// @formatter:off
+
 			endpoints
 				.tokenStore(tokenStore)
 				.authenticationManager(this.authenticationManager);
-			// @formatter:on
+
 		}
 
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-			// @formatter:off
+
 			clients.inMemory()
 			.withClient("crmClient1")
 			.secret("$2a$10$5OkeCLKNs/BkdO0qcYRri.MdIcKhFvElAllhPgLfRQqG7wkEiPmq2")
@@ -75,7 +75,7 @@ public class OAuthServerConfigration {
 	          .accessTokenValiditySeconds(300)
 	          .refreshTokenValiditySeconds(60)
 						.resourceIds(SERVER_RESOURCE_ID);
-			// @formatter:on
+			
 		}
 
 		
@@ -83,7 +83,8 @@ public class OAuthServerConfigration {
 		
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-			security.allowFormAuthenticationForClients();
+			security
+			.allowFormAuthenticationForClients();
 			}
 
 		

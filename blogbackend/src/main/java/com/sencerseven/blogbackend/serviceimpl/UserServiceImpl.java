@@ -68,4 +68,19 @@ public class UserServiceImpl implements UserService{
  		return null;
 	}
 
+	@Override
+	@Transactional
+	public Long userCount() {
+		
+		try {
+			String queryString = "Select count(*) from User";
+			Query<?> query = sessionFactory.getCurrentSession().createQuery(queryString);
+			return (Long) query.uniqueResult();
+		} catch (Exception e) {
+			
+		}
+		return null;
+		
+	}
+	
 }

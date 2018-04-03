@@ -10,3 +10,69 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, blog, grid-layout, two-columns, left-sidebar, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, sticky-post, threaded-comments
 Text Domain: worldnews
 */
+
+.user-area .user-avatar {
+    float: right;
+    margin-top: 4px;
+    width: 32px;
+}
+
+.rounded-circle {
+    border-radius: 50%!important;
+}
+
+
+.user-area {
+    float: right;
+    padding-right: 0;
+    position: relative;
+    .user-menu {
+        background: $header-bg;
+        border: none;
+        font-family: 'Open Sans';
+        left: inherit !important;
+        right: 0;
+        top: 55px !important;
+        margin: 0;
+        max-width: 150px;
+        padding: 5px 10px;
+        position: absolute;
+        width: 100%;
+        z-index: 999;
+        min-width: 150px;
+        .nav-link {
+            color: $menu-color;
+            display: block;
+            font-size: 14px;
+            line-height: 22px;
+            padding: 5px 0;
+        }
+    }
+    .user-avatar {
+        float: right;
+        margin-top: 4px;
+        width: 32px;
+    }
+    .user-info .name {
+        color: #8c8c8c;
+        font-size: 14px;
+        position: relative;
+        text-transform: uppercase;
+    }
+    .count {
+        background: #d9534f;
+        border-radius: 50%;
+        color: #fff;
+        font-family: 'Open Sans';
+        font-size: 9px;
+        font-weight: 700;
+        float: right;
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+        text-align: center;
+    }
+    .dropdown-toggle:after {
+        display: none;
+    }
+}

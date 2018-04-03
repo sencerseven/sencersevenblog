@@ -20,4 +20,6 @@ public User getUser(int id);
 	//Bussiness methods
 	
 	public User getByEmail(String email);
+
+	Long userCount();
 }

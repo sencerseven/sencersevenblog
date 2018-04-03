@@ -28,6 +28,8 @@ public interface PostsService {
 	List<Posts> getNextPost(Posts post, int startAt, int limit);
 	List<Posts> getBackPost(Posts post, int startAt, int limit);
 	List<Posts> getSliderPost(int startAt, int limit);
+	public List<Posts> featuredPost(int startAt, int limit);
+	List<Posts> searchPostLike(String text);
 	
 	
 }

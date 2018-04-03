@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.sencerseven.blogbackend.dao.CategoryDAO;
 import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.dto.Posts;
+import com.sencerseven.blogbackend.dto.Widget;
 import com.sencerseven.blogbackend.funtions.BlogBackendFunctions;
 import com.sencerseven.blogbackend.service.CategoryService;
 
@@ -103,6 +104,9 @@ public class CategoryServiceImpl implements CategoryService{
 				List<Posts> listPosts = posts.getResultList();
 				for(Posts tempPost : listPosts) {
 					Hibernate.initialize(tempPost.getImages());
+					Hibernate.initialize(tempPost.getComment());
+					Hibernate.initialize(tempPost.getWidgets());
+					
 				}
 				tempCategory.setPosts(listPosts);
 				

@@ -6,16 +6,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -99,6 +105,13 @@ public class Posts implements Serializable{
 	
 	@Column(name="view",nullable= false,columnDefinition="int default 0")
 	private int view;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinTable(
+			name="Posts_Widget",
+			joinColumns = {@JoinColumn(name="posts_id")},
+			inverseJoinColumns = {@JoinColumn(name="widget_id")})
+	 private List<Widget> widgets;
 	
 	
 	public Posts() {
@@ -215,6 +228,15 @@ public class Posts implements Serializable{
 		 String formattedDate = targetFormat.format(created_date);
 	
 		return formattedDate;
+	}
+	
+
+	public List<Widget> getWidgets() {
+		return widgets;
+	}
+
+	public void setWidgets(List<Widget> widgets) {
+		this.widgets = widgets;
 	}
 
 	@Override

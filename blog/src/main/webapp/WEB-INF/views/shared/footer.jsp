@@ -1,3 +1,4 @@
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div data-vc-full-width="true" data-vc-full-width-init="false"
@@ -43,9 +44,7 @@
 					class="wpb_text_column wpb_content_element  vc_custom_1501125333678">
 					<div class="wpb_wrapper">
 						<p>
-							<span style="color: #cccccc;">WorldNews helps you navigate
-								the WN ecosystem to find the products you want and the advice
-								you need to get the job done.</span>
+							<span style="color: #cccccc;">İstediğiniz herşeye ulaşabilceğiniz adres</span>
 						</p>
 
 					</div>
@@ -95,27 +94,17 @@
 					class="vc_custom_heading title14 vc_custom_1501123565204">Kategoriler</h3>
 				<div class="vc_row wpb_row vc_inner vc_custom_1504769820403">
 				
-				
-					<div class="wpb_column column_container col-sm-6">
-						<div class="vc_column-inner ">
-							<div class="wpb_wrapper">
-								<ul class="list-none footer-list ">
+			
+					<div class="  col-sm-12">
+						<div class=" ">
+
 								<c:forEach items="${allCategoryAdvice}" var="category">
-								<li><a href="index.html#" target="_parent">${category.categoryName }</a></li>
+								<div class="col-sm-6 list-none footer-list "><a style="color:#FFF" href="index.html#" target="_parent" capitalize>
+								${fn:toUpperCase(fn:substring(category.categoryName, 0, 1))}${fn:toLowerCase(fn:substring(category.categoryName, 1,fn:length(category.categoryName)))}
+								
+								</a></div>
 								</c:forEach>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="wpb_column column_container col-sm-6">
-						<div class="vc_column-inner ">
-							<div class="wpb_wrapper">
-								<ul class="list-none footer-list ">
-									<li><a href="index.html#" target="_parent">Gallery</a></li>
-									<li><a href="index.html#" target="_parent">Videos</a></li>
-									<li><a href="index.html#" target="_parent">Shop</a></li>
-								</ul>
-							</div>
+							
 						</div>
 					</div>
 					
@@ -124,13 +113,13 @@
 					<h3 class="title14">Follow us:</h3>
 					<ul class="list-none">
 						<li><a href="index.html#" title=""><i
-								class="fa fa fa-facebook"></i></a></li>
+								class="fas fa-facebook"></i></a></li>
 						<li><a href="index.html#" title=""><i
-								class="fa fa fa-twitter"></i></a></li>
+								class="fas fa-twitter"></i></a></li>
 						<li><a href="index.html#" title=""><i
-								class="fa fa fa-pinterest"></i></a></li>
+								class="fas fa-pinterest"></i></a></li>
 						<li><a href="index.html#" title=""><i
-								class="fa fa fa-instagram"></i></a></li>
+								class="fas fa-instagram"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -184,25 +173,10 @@
 				<div
 					class="wpb_text_column wpb_content_element  vc_custom_1500958452561">
 					<div class="wpb_wrapper">
-						<p>© 2017 worlnews Media LLC. All Rights Reserved.</p>
+						<p>© 2018 worlnews Media LLC.Tüm Hakları Saklıdır..</p>
 
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="wpb_column column_container col-sm-12 col-md-7">
-		<div class="vc_column-inner ">
-			<div class="wpb_wrapper">
-				<ul class="bottom-link list-inline-block text-right ">
-					<li><a href="index.html#" target="_parent">Terms &amp;
-							Conditions</a></li>
-					<li><a href="index.html#" target="_parent">Privacy
-							Statement</a></li>
-					<li><a href="index.html#" target="_parent">Market Data by
-							7uptheme</a></li>
-					<li><a href="index.html#" target="_parent">Add Choices</a></li>
-				</ul>
 			</div>
 		</div>
 	</div>

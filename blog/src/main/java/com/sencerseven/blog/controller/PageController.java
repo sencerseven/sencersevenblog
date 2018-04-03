@@ -56,6 +56,9 @@ public class PageController {
 		
 		List<Posts> posts = postService.getSliderPost(0, 5);
 		
+		List<Posts> featuredPost = postService.featuredPost(0,10);
+		
+		
 		
 		for(Category tempCategory : categories) {
 			CategoryModel categoryModel = new CategoryModel();
@@ -69,6 +72,7 @@ public class PageController {
 		if(categories != null) {
 			mv.addObject("categoryModelList", categoryModelList);
 		}
+		mv.addObject("featuredPosts", featuredPost);
 		mv.addObject("sliderPosts", posts);
 		
 		String pass = bcryptPasswordEncoder.encode("123");

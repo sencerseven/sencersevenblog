@@ -35,17 +35,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sencerseven.blogbackend.dto.Category;
 import com.sencerseven.blogbackend.service.CategoryService;
+import com.sencerseven.blogbackend.service.UserService;
 
 @Controller
 @RequestMapping(value= {"/admin"})
 public class AdminPageController{
 
-	
+@Autowired
+UserService userService;	
 	
 	
 	@RequestMapping
 	public ModelAndView indexPage() {
 		ModelAndView mv = new ModelAndView("admin");
+		
+		Long userCount = userService.userCount();
+		
+
+		mv.addObject("userCount", userCount);
 		
 		mv.addObject("title", "Admin DashBoard");
 		mv.addObject("adminClickHomePage", true);

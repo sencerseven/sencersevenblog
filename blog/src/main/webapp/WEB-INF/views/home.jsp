@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <article id="post-75"
 	class="post-75 page type-page status-publish hentry">
 	<div class="entry-content">
@@ -26,7 +27,7 @@
 											<i class="ion-image"></i>
 										</div>
 										<a
-											href="2017/08/10/new-collection-style-for-woman-2017/index.html">
+											href="${contextRoot }/post/${sliderPost.postUrl}">
 											<img width="770" height="513"
 											src="${contextRoot }/resources/images/uploads/${sliderPost.images[0].imageName}"
 											 />
@@ -40,7 +41,7 @@
 											<li><i class="ion-android-calendar"></i> <span>${sliderPost.dateString }</span></li>
 											<li><a
 												href="2017/08/10/new-collection-style-for-woman-2017/index.html#comments">
-													<i class="ion-chatbox-working"></i> <span>1</span>
+													<i class="ion-chatbox-working"></i> <span>${fn:length(sliderPost.comment)}</span>
 											</a></li>
 										</ul>
 									</div>
@@ -119,7 +120,7 @@
 										<div class="post-item">
 											<div class="post-thumb">
 												<a
-													href="2017/08/31/nemo-enim-ipsam-volup-latim-monla-3/index.html">
+													href="${contextRoot }/post/${trendPost.postUrl}">
 													<img width="120" height="80"
 													src="${contextRoot}/resources/images/uploads/${trendPost.images[0].imageName}"
 													class="attachment-120x80 size-120x80 wp-post-image" alt=""
@@ -136,10 +137,10 @@
 												</div>
 												<a href="${contextRoot}/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
 												<ul class="post-list-info">
-													<li><i class="ion-android-calendar"></i> <span>${trendPost.created_date }</span></li>
+													<li><i class="ion-android-calendar"></i> <span>${trendPost.dateString }</span></li>
 													<li><a
 														href="2017/08/31/nemo-enim-ipsam-volup-latim-monla-3/index.html#respond">
-															<i class="ion-chatbox-working"></i> <span>0</span>
+															<i class="ion-chatbox-working"></i> <span>${fn:length(trendPost.comment) }</span>
 													</a></li>
 													<li><i class="ion-ios-eye"></i> <span>${trendPost.view }</span></li>
 												</ul>
@@ -244,159 +245,31 @@
 								<a href="">Feature posts</a>
 							</h2>
 							<div class="wrap-item" data-pagination="false"
-								data-navigation="true"
-								data-itemscustom="[[0,1],[480,2],[768,3],[980,5]]">
+								data-navigation="true">
+								<c:forEach items="${featuredPosts}" var="featurePost">
 								<div class="post-item">
 									<div class="post-thumb">
 										<a
-											href="2017/08/07/diana-says-vlogging-saved-my-life-proin-dictum/index.html">
+											href="${contextRoot }/post/${featurePost.postUrl}">
 											<img width="202" height="135"
-											src="wp-content/uploads/2017/08/worldnews_fashion-02-202x135.jpg"
+											src="${contextRoot }/resources/images/uploads/${featurePost.images[0].imageName}"
 											class="attachment-202x135 size-202x135 wp-post-image" alt=""
-											srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-02-202x135.jpg 202w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-02-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-02-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-02-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-02-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-02-392x262.jpg 392w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-02.jpg 900w"
-											sizes="(max-width: 202px) 100vw, 202px" />
+											/>
 										</a>
 									</div>
 									<div class="post-info">
 										<a
-											href="2017/08/07/diana-says-vlogging-saved-my-life-proin-dictum/index.html"><b>Diana
-												says: Vlogging saved my life Proin dictum</b></a>
+											href="${contextRoot }/post/${featurePost.postUrl}"><b>${featurePost.title }</b></a>
 										<ul class="post-list-info">
-											<li><i class="ion-android-calendar"></i> <span>07
-													Aug 2017</span></li>
+											<li><i class="ion-android-calendar"></i> <span>${featurePost.dateString} </span></li>
 											<li><a
-												href="2017/08/07/diana-says-vlogging-saved-my-life-proin-dictum/index.html#respond">
+												href="${contextRoot }/post/${featurePost.postUrl}">
 													<i class="ion-chatbox-working"></i> <span>0</span>
 											</a></li>
 										</ul>
 									</div>
 								</div>
-								<div class="post-item">
-									<div class="post-thumb">
-										<a
-											href="2017/08/07/news-paper-responsive-wordpress/index.html">
-											<img width="202" height="135"
-											src="wp-content/uploads/2017/08/worldnews_fashion-06-202x135.jpg"
-											class="attachment-202x135 size-202x135 wp-post-image" alt=""
-											srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-06-202x135.jpg 202w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-06-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-06-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-06-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-06-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-06.jpg 900w"
-											sizes="(max-width: 202px) 100vw, 202px" />
-										</a>
-									</div>
-									<div class="post-info">
-										<a
-											href="2017/08/07/news-paper-responsive-wordpress/index.html"><b>News
-												Paper &#8211; Responsive WordPress</b></a>
-										<ul class="post-list-info">
-											<li><i class="ion-android-calendar"></i> <span>07
-													Aug 2017</span></li>
-											<li><a
-												href="2017/08/07/news-paper-responsive-wordpress/index.html#respond">
-													<i class="ion-chatbox-working"></i> <span>0</span>
-											</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="post-item">
-									<div class="post-thumb">
-										<a
-											href="2017/08/07/science-explains-how-singing-in-the-car-can-boost-your/index.html">
-											<img width="202" height="135"
-											src="wp-content/uploads/2017/08/worldnews_fashion-07-202x135.jpg"
-											class="attachment-202x135 size-202x135 wp-post-image" alt=""
-											srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-202x135.jpg 202w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-370x247.jpg 370w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-200x133.jpg 200w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-170x113.jpg 170w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07-392x262.jpg 392w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-07.jpg 900w"
-											sizes="(max-width: 202px) 100vw, 202px" />
-										</a>
-									</div>
-									<div class="post-info">
-										<a
-											href="2017/08/07/science-explains-how-singing-in-the-car-can-boost-your/index.html"><b>Science
-												explains how singing in the car can boost your</b></a>
-										<ul class="post-list-info">
-											<li><i class="ion-android-calendar"></i> <span>07
-													Aug 2017</span></li>
-											<li><a
-												href="2017/08/07/science-explains-how-singing-in-the-car-can-boost-your/index.html#respond">
-													<i class="ion-chatbox-working"></i> <span>0</span>
-											</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="post-item">
-									<div class="post-thumb">
-										<a
-											href="2017/08/07/why-self-esteem-such-and-why-you-dont-need-it/index.html">
-											<img width="202" height="135"
-											src="wp-content/uploads/2017/08/worldnews_fashion-11-202x135.jpg"
-											class="attachment-202x135 size-202x135 wp-post-image" alt=""
-											srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-11-202x135.jpg 202w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-11-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-11-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-11-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-11-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-11.jpg 900w"
-											sizes="(max-width: 202px) 100vw, 202px" />
-										</a>
-									</div>
-									<div class="post-info">
-										<a
-											href="2017/08/07/why-self-esteem-such-and-why-you-dont-need-it/index.html"><b>Why
-												self esteem such and why you don&#8217;t need it</b></a>
-										<ul class="post-list-info">
-											<li><i class="ion-android-calendar"></i> <span>07
-													Aug 2017</span></li>
-											<li><a
-												href="2017/08/07/why-self-esteem-such-and-why-you-dont-need-it/index.html#respond">
-													<i class="ion-chatbox-working"></i> <span>0</span>
-											</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="post-item">
-									<div class="post-thumb">
-										<a
-											href="2017/08/07/magalla-magazine-news-and-business-blog/index.html">
-											<img width="202" height="135"
-											src="wp-content/uploads/2017/08/worldnews_fashion-01-202x135.jpg"
-											class="attachment-202x135 size-202x135 wp-post-image" alt=""
-											srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-202x135.jpg 202w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-370x247.jpg 370w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-200x133.jpg 200w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-170x113.jpg 170w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01-392x262.jpg 392w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-01.jpg 900w"
-											sizes="(max-width: 202px) 100vw, 202px" />
-										</a>
-									</div>
-									<div class="post-info">
-										<a
-											href="2017/08/07/magalla-magazine-news-and-business-blog/index.html"><b>Magalla
-												Magazine &#8211; News and Business Blog</b></a>
-										<ul class="post-list-info">
-											<li><i class="ion-android-calendar"></i> <span>07
-													Aug 2017</span></li>
-											<li><a
-												href="2017/08/07/magalla-magazine-news-and-business-blog/index.html#respond">
-													<i class="ion-chatbox-working"></i> <span>0</span>
-											</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="post-item">
-									<div class="post-thumb">
-										<a
-											href="2017/08/07/why-its-the-year-to-wear-what-you-like-not-dress-for-your-type/index.html">
-											<img width="202" height="135"
-											src="wp-content/uploads/2017/08/worldnews_fashion-03-202x135.jpg"
-											class="attachment-202x135 size-202x135 wp-post-image" alt=""
-											srcset="http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03-202x135.jpg 202w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03-300x200.jpg 300w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03-768x512.jpg 768w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03-510x340.jpg 510w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03-270x180.jpg 270w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03-392x262.jpg 392w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03-120x80.jpg 120w, http://7uptheme.com/wordpress/worldnews/wp-content/uploads/2017/08/worldnews_fashion-03.jpg 900w"
-											sizes="(max-width: 202px) 100vw, 202px" />
-										</a>
-									</div>
-									<div class="post-info">
-										<a
-											href="2017/08/07/why-its-the-year-to-wear-what-you-like-not-dress-for-your-type/index.html"><b>Why
-												It&#8217;s the Year to Wear What You Like &#8211; Not Dress
-												for Your Type</b></a>
-										<ul class="post-list-info">
-											<li><i class="ion-android-calendar"></i> <span>07
-													Aug 2017</span></li>
-											<li><a
-												href="2017/08/07/why-its-the-year-to-wear-what-you-like-not-dress-for-your-type/index.html#respond">
-													<i class="ion-chatbox-working"></i> <span>0</span>
-											</a></li>
-										</ul>
-									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -488,7 +361,7 @@
 																	<i class="ion-image"></i>
 																</div>
 																<a
-																	href="2017/08/09/business-magazine-wordpress-theme/index.html">
+																	href="${contextRoot }/post/${categoryModel.category.posts[0].postUrl}">
 																	<img width="510" height="340"
 																	src="${contextRoot}/resources/images/uploads/${categoryModel.category.posts[0].images[0].imageName}"
 																	class="attachment-510x340 size-510x340 wp-post-image"
@@ -500,12 +373,13 @@
 																	href="2017/08/09/business-magazine-wordpress-theme/index.html"><b>
 																		${categoryModel.category.categoryName} :
 																		${categoryModel.category.posts[0].title}</b></a>
+																		${categoryModel.category.posts[0].widgets[0].code}</b></a>
 																<ul class="post-list-info">
-																	<li><i class="ion-android-calendar"></i><span>
+																	<li><i class="ion-android-calendar"></i>${categoryModel.category.posts[0].dateString }<span>
 																	</span></li>
 																	<li><a
 																		href="2017/08/09/business-magazine-wordpress-theme/index.html#respond">
-																			<i class="ion-chatbox-working"></i> <span>0</span>
+																			<i class="ion-chatbox-working"></i> <span>${fn:length(categoryModel.category.posts[0].comment)}</span>
 																	</a></li>
 																</ul>
 																<p>${categoryModel.category.posts[0].content}...</p>
@@ -535,11 +409,11 @@
 																				<a href="${contextRoot}/post/${post.postUrl}"><b>${post.title}
 																						&#8211; ${categoryModel.category.categoryName}</b></a>
 																				<ul class="post-list-info">
-																					<li><i class="ion-android-calendar"></i> <span>
+																					<li><i class="ion-android-calendar">${post.dateString }</i> <span>
 																					</span></li>
 																					<li><a
 																						href="2017/08/09/magalla-magazine-news-and-business-blog-3/index.html#respond">
-																							<i class="ion-chatbox-working"></i> <span>0</span>
+																							<i class="ion-chatbox-working"></i> <span>${fn:length(post.comment) }</span>
 																					</a></li>
 																				</ul>
 																			</div>
@@ -579,10 +453,10 @@
 																<div class="post-info">
 																	<a href="${contextRoot}/post/${populerPost.postUrl}"><b>${populerPost.title }</b></a>
 																	<ul class="post-list-info">
-																		<li><i class="ion-android-calendar"></i> <span></span>${populerPost.created_date }</li>
+																		<li><i class="ion-android-calendar"></i> <span></span>${populerPost.dateString }</li>
 																		<li><a
 																			href="2017/08/07/bulum-iaculis-lacinia-est-2/index.html#respond">
-																				<i class="ion-chatbox-working"></i> <span>0</span>
+																				<i class="ion-chatbox-working"></i> <span>${fn:length(populerPost.comment) }</span>
 
 																		</a></li>
 																		<li><i class="ion-ios-eye"></i> <span>${populerPost.view }</span></li>
@@ -604,7 +478,8 @@
 				</div>
 			</c:if>
 		</c:forEach>
-
+		<!-- WORLD IN PICTURE  -->
+		<!--  
 		<div data-vc-full-width="true" data-vc-full-width-init="false"
 			data-vc-stretch-content="true"
 			class="vc_row wpb_row world-in color-border-bottom ion-big vc_custom_1502532941855 vc_row-no-padding">
@@ -764,6 +639,9 @@
 			</div>
 		</div>
 		<div class="vc_row-full-width vc_clearfix"></div>
+		 -->
+		 <!-- EDITORS PICK -->
+		 <!-- 
 		<div class="vc_row wpb_row">
 			<div class="wpb_column column_container col-sm-12">
 				<div class="vc_column-inner ">
@@ -976,6 +854,7 @@
 			</div>
 		</div>
 		<div class="vc_row-full-width vc_clearfix"></div>
+		 -->
 	</div>
 	<!-- .entry-content -->
 </article>

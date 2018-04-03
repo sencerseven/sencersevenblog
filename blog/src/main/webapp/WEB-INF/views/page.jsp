@@ -249,6 +249,10 @@ img.wp-smiley, img.emoji {
 				<c:if test="${userClickProfileDetails == true }">
 					<%@include file="profile-detail.jsp" %>
 				</c:if>
+				<c:if test="${userClickSearch == true }">
+					<%@include file="search.jsp" %>
+				</c:if>
+				
 				<!-- #post-## -->
 			</div>
 		</div>

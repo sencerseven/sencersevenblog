@@ -10,11 +10,11 @@
 			<div class="row">
 				<div class="listing-content col-md-8">
 					<div class="listing-title color-border-top">
-						<h2 class="color-title pull-left">${category.categoryName }</h2>
+						<h2 class="color-title pull-left">Arama - ${param.text}</h2>
 						<div class="bread-crumb pull-right">
 							<ul id="crumbs" class="list-inline-block">
 								<li class="mb"><a class="" href="${contextRoot }">Home</a></li>
-								<li class="current">${category.categoryName }</li>
+
 							</ul>
 						</div>
 					</div>

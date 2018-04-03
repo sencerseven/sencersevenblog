@@ -43,6 +43,7 @@ public class CategoryController {
 		
 		
 		List<Posts> postsList = postsService.getLimitLastPostsByCategory(category, SizeOfPage, (page * SizeOfPage));
+		List<Posts> populerPosts = postsService.getTrendPosts(3, 0, category.getId());
 		
 		System.out.println(countPost);
 		
@@ -50,6 +51,7 @@ public class CategoryController {
 		mv.addObject("userClickCategoryDetail", true);
 		
 		mv.addObject("postsList", postsList);
+		mv.addObject("populerPostsList", populerPosts);
 		mv.addObject("category", category);
 		
 		return mv;

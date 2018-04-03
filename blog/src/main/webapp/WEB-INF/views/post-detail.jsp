@@ -308,39 +308,9 @@
 												</div>
 												<a href="${contextRoot }/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
 												<ul class="post-list-info">
-													<li><i class="ion-android-calendar"></i> <span>${trendPost.created_date}</span></li>
+													<li><i class="ion-android-calendar"></i> <span>${trendPost.dateString }</span></li>
 													<li><a href="index.html#"> <i
-															class="ion-chatbox-working"></i> <span>0</span>
-													</a></li>
-													<li><i class="ion-ios-eye"></i> <span>${trendPost.view}</span></li>
-												</ul>
-											</div>
-										</div>
-									</c:forEach>
-								</div>
-								<div class="post-box">
-									<c:forEach items="${categoryTrendPost}" var="trendPost">
-										<div class="post-item">
-											<div class="post-thumb">
-												<a href="${contextRoot }/post/${trendPost.postUrl}"><img
-													width="120" height="80"
-													src="${contextRoot}/resources/images/uploads/${trendPost.images[0].imageName}"
-													class="attachment-120x80 size-120x80 wp-post-image" alt=""
-													sizes="(max-width: 120px) 100vw, 120px" /></a>
-											</div>
-											<div class="post-info">
-												<div class="list-cat-btn">
-													<ul>
-														<li><a
-															href="${contextRoot}/category/${trendPost.category.categoryUrl }"
-															class="s7upf_1520526403">${trendPost.category.categoryName }</a></li>
-													</ul>
-												</div>
-												<a href="${contextRoot }/post/${trendPost.postUrl}"><b>${trendPost.title }</b></a>
-												<ul class="post-list-info">
-													<li><i class="ion-android-calendar"></i> <span>${trendPost.created_date}</span></li>
-													<li><a href="index.html#"> <i
-															class="ion-chatbox-working"></i> <span>0</span>
+															class="ion-chatbox-working"></i>${fn:length(trendPost.comment) }<span></span>
 													</a></li>
 													<li><i class="ion-ios-eye"></i> <span>${trendPost.view}</span></li>
 												</ul>
@@ -375,7 +345,7 @@
 										<div class="post-info">
 											<a href="${contextRoot }/post/${getRecentPost[0].postUrl}"><b>${getRecentPost[0].title }</b></a>
 											<ul class="post-list-info">
-												<li><i class="ion-android-calendar"></i> <span>${getRecentPost[0].created_date }</span></li>
+												<li><i class="ion-android-calendar"></i> <span>${getRecentPost[0].dateString }</span></li>
 												<li><a
 													href="../../../09/08/eminem-comes-out-of-woodwork-to-raise-millions-for-manchester/index.html#respond">
 														<i class="ion-chatbox-working"></i> <span>0</span>
@@ -402,11 +372,11 @@
 													<div class="post-info">
 														<a href="${contextRoot }/post/${recentPost.postUrl}"><b>${recentPost.title }</b></a>
 														<ul class="post-list-info">
-															<li><i class="ion-android-calendar"></i> <span>08
-																	Sep 2017</span></li>
+															<li><i class="ion-android-calendar"></i> <span>${recentPost.dateString }</span></li>
 															<li><a
 																href="../../../09/08/magalla-magazine-news-and-business-blog-by-ea-studio-9/index.html#respond">
-																	<i class="ion-chatbox-working"></i> <span>0</span>
+																	<i class="ion-chatbox-working"></i> <span>${fn:length(recentPost.comment)}</span>
+																
 															</a></li>
 														</ul>
 													</div>

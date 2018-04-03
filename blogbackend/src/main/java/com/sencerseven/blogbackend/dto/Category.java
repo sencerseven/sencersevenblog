@@ -19,6 +19,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javassist.CtField.Initializer;
 
 @Entity
@@ -48,7 +50,8 @@ public class Category implements Serializable{
 	@Column(name="category_url")
 	private String categoryUrl;
 
-	@OneToMany(mappedBy="category",cascade =  {CascadeType.ALL},fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="category",cascade =  {CascadeType.ALL})
+	@JsonIgnore
 	private List<Posts> posts;
 	
 	

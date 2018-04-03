@@ -18,11 +18,13 @@ import com.sencerseven.blogbackend.service.ImagesService;
 public class BlogResource {
 
 	@Autowired
-	ImagesService imageService;
+	CategoryService categoryService;
+	
+	
 	
 	@GetMapping(value ="/category/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public Images getCategory(@PathVariable("id")int id){
-		return imageService.getImages(1);		
+	public Category getCategory(@PathVariable("id")int id){
+		return categoryService.getCategory(id);	
 	}
 	
 }
